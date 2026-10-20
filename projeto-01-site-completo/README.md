@@ -1,8 +1,11 @@
-# Projeto 1 · Site Completo e Estético
+# Projeto 1 · Site Completo
 
-**Semana 5 · 08/Mai**
+**S4 · 26/out – 01/nov**
 
-Do planejamento ao design system, integrado com pagamento
+## Aulas
+
+- Aula 1: Especificação, design, desenvolvimento e deploy
+- Aula 2: Gateway de pagamento e distribuição
 
 ## Anotações
 

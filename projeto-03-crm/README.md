@@ -1,8 +1,12 @@
-# Projeto 3 · Sistema de CRM Completo
+# Projeto 3 · Sistema de CRM
 
-**Semana 7 · 29/Mai**
+**S5 · 02/nov – 08/nov**
 
-CRM com Kanban, Slack, Notion e relatórios automáticos
+## Aulas
+
+- Parte 1
+- Parte 2
+- Parte 3
 
 ## Anotações
 

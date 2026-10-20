@@ -1,8 +1,10 @@
-# Projeto 2 · Engenharia de Dados + Análise
+# Projeto 2 · Análise e Engenharia de Dados
 
-**Semana 6 · 15/Mai**
+**S5 · 02/nov – 08/nov**
 
-Pipeline de dados em produção + dashboard interativo
+## Aulas
+
+- Criando um Projeto de Análise e Engenharia de Dados
 
 ## Anotações
 

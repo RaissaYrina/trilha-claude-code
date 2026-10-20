@@ -1,51 +1,70 @@
 # Trilha Claude Code — Jornada de Dados
 
-Repositório de estudos para acompanhar e praticar a **Trilha de Claude Code** da [Jornada de Dados](https://suajornadadedados.curseduca.pro/m/lessons/trilha-claudecode).
+Repositório de estudos da **[Trilha de Claude Code](https://suajornadadedados.curseduca.pro/m/lessons/trilha-claudecode)** da Jornada de Dados. Aqui ficam as anotações, os exercícios e os projetos feitos durante a trilha.
 
-## Objetivo
+## Sobre
 
-Entender e aprender a usar o [Claude Code](https://claude.com/claude-code), o assistente de programação da Anthropic que roda no terminal, aplicando-o no dia a dia de engenharia de dados.
+O [Claude Code](https://claude.com/claude-code) é o assistente de programação da Anthropic que roda no terminal. Ele lê o código, executa comandos, edita arquivos e trabalha com Git a partir de instruções em linguagem natural.
+
+Esta trilha faz parte da **Fase 1 – Pipelines open source** do meu roadmap de carreira rumo a Engenheira de Dados Sênior.
+
+## Objetivos
+
+- Entender como o Claude Code funciona e configurar o ambiente de desenvolvimento
+- Usar Git e GitHub no fluxo de trabalho com o Claude Code
+- Escrever PRDs e especificações antes de programar (Spec-Driven Development)
+- Conhecer os recursos avançados: Claude Design, Cowork, Chat e API
+- Construir projetos completos: site com pagamento, pipeline de dados, CRM e agente de IA no WhatsApp
+- Aplicar o Claude Code nos meus próprios projetos de engenharia de dados
 
 ## Cronograma
 
-8 semanas, ~5 horas por semana.
+3 semanas, com meta de 6h de estudo por semana. O acompanhamento das aulas fica no meu roadmap [DAG da Carreira](https://claude.ai/artifact/FS8v3qEyXZSdVuTWrEQrLc).
 
-| Semana | Data | Conteúdo | Tópicos | Concluído |
-|---|---|---|---|---|
-| 1 | 10/Abr | **Módulo 1 · Como o Claude Code Funciona** | Loop agêntico, tool calls, context window, setup | ⬜ |
-| 2 | 17/Abr | **Módulo 2 · Comandos, Contexto e Memória** | Slash commands, CLAUDE.md, gerenciamento de sessões | ⬜ |
-| 3 | 24/Abr | **Módulo 3 · Tools, Hooks, Plan Mode e Subagentes** | Hooks, Skills, subagentes, git worktrees | ⬜ |
-| 4 | 01/Mai | **Módulo 4 · Integrações via MCP** | Supabase, WhatsApp, Slack, Notion, GitHub, Figma, Playwright | ⬜ |
-| 5 | 08/Mai | **Projeto 1 · Site Completo e Estético** | Do planejamento ao design system, integrado com pagamento | ⬜ |
-| 6 | 15/Mai | **Projeto 2 · Engenharia de Dados + Análise** | Pipeline de dados em produção + dashboard interativo | ⬜ |
-| 7 | 29/Mai | **Projeto 3 · Sistema de CRM Completo** | CRM com Kanban, Slack, Notion e relatórios automáticos | ⬜ |
-| 8 | 05/Jun | **Projeto 4 · Agente de WhatsApp com RAG** | Agente com RAG, contexto persistido e handoff humano | ⬜ |
-
-## O que vou registrar aqui
-
-- Anotações de cada aula da trilha
-- Exercícios e exemplos práticos
-- Comandos, atalhos e configurações úteis do Claude Code
-- Experimentos aplicando o Claude Code em projetos de dados
+| Semana | Período | Tema | Conteúdo |
+|---|---|---|---|
+| **S3** | 19/out – 25/out | Fundamentos e fluxo | Abertura · Módulo 1: Setup (Git, Antigravity, Python e Claude Code) e Fundamentos · Módulo 2: Quiz no Claude Code, GitHub e repositórios remotos, PRD |
+| **S4** | 26/out – 01/nov | Recursos avançados e specs | Módulo 3: Recursos avançados, Claude Design, Claude Code/Cowork/Chat/API · Módulo 4: Spec-Driven Development · Projeto 1: Site completo com gateway de pagamento |
+| **S5** | 02/nov – 08/nov | Projetos | Projeto 2: Análise e Engenharia de Dados · Projeto 3: Sistema de CRM · Projeto 4: Agente de IA no WhatsApp · Aplicação num projeto do portfólio |
 
 ## Estrutura
 
 ```
 .
-├── README.md                                   # Descrição do projeto
-├── modulo-01-como-o-claude-code-funciona/
-├── modulo-02-comandos-contexto-memoria/
-├── modulo-03-tools-hooks-plan-mode-subagentes/
-├── modulo-04-integracoes-mcp/
-├── projeto-01-site-completo/
-├── projeto-02-engenharia-de-dados/
-├── projeto-03-crm/
-└── projeto-04-agente-whatsapp-rag/
+├── README.md                              # Descrição do projeto
+├── modulo-01-setup-e-fundamentos/         # S3
+├── modulo-02-quiz-github-prd/             # S3
+├── modulo-03-recursos-avancados/          # S4
+├── modulo-04-spec-driven-development/     # S4
+├── projeto-01-site-completo/              # S4
+├── projeto-02-engenharia-de-dados/        # S5
+├── projeto-03-crm/                        # S5
+└── projeto-04-agente-whatsapp/            # S5
 ```
 
-Cada pasta tem um `README.md` com espaço para anotações, exercícios e dúvidas.
+Cada pasta tem um `README.md` com as aulas daquela parte e espaço para anotações, exercícios e dúvidas. O código dos projetos fica dentro da pasta correspondente.
+
+## Ferramentas
+
+- [Claude Code](https://claude.com/claude-code)
+- Git e GitHub
+- Python
+- Antigravity
+- VS Code
+
+## Como usar
+
+```bash
+git clone https://github.com/RaissaYrina/trilha-claude-code.git
+cd trilha-claude-code
+claude
+```
+
+O último comando abre o Claude Code dentro da pasta do repositório.
 
 ## Links
 
-- Trilha: https://suajornadadedados.curseduca.pro/m/lessons/trilha-claudecode
+- Trilha Claude Code: https://suajornadadedados.curseduca.pro/m/lessons/trilha-claudecode
 - Documentação do Claude Code: https://docs.claude.com/en/docs/claude-code/overview
+- GitHub: https://github.com/RaissaYrina
+- LinkedIn: https://linkedin.com/in/raissamarusso
