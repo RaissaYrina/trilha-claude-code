@@ -139,6 +139,7 @@ As páginas ficam em `app/[locale]/`, com rotas `/pt` e `/en`. Os textos de UI f
   - `level`
   - `topic`
   - `roles` (`analyst | engineer | scientist`)
+  - `dataScenario` (a pergunta usa um cenário de dados como contexto)
   - `answer`
   - `statement` e `explanation` com `pt`/`en`
   - `docUrl`
