@@ -23,6 +23,7 @@ Checagens:
 pnpm lint
 pnpm typecheck
 pnpm test         # Vitest com cobertura
+pnpm test:integration   # lib/db contra o Supabase local (pnpm db:start)
 pnpm build && pnpm test:e2e   # Playwright + axe contra o build
 ```
 
@@ -39,5 +40,8 @@ pnpm build && pnpm test:e2e   # Playwright + axe contra o build
 - **Banco fechado por padrão.** RLS ligado nas 4 tabelas, sem policies, e `revoke all` de `anon`/`authenticated`, inclusive nos default privileges, para que objetos de migrations futuras também nasçam fechados. A view `question_stats` usa `security_invoker`. Só a chave `service_role`, nos Route Handlers, acessa os dados.
 - **Supabase local enxuto.** O `config.toml` desliga realtime, storage, e-mail, edge functions e analytics. O auth continua ligado porque é ele que emite as chaves `anon`/`service_role` que o PostgREST valida.
 - **Cliente Supabase criado sob demanda** (`getSupabase()`): o build não precisa das variáveis, e a primeira requisição falha com os nomes das que faltam.
+- **Acesso ao banco isolado em `lib/db/`.** A lógica da partida (`lib/session.ts`) é pura e testada sem banco. Os testes de API trocam `lib/db/sessions` por uma versão em memória com as mesmas garantias (PK e update condicionado ao índice), e `lib/db/` tem testes próprios contra o Postgres local (`pnpm test:integration`), fora da cobertura unitária.
+- **Ordem na resposta: insere em `session_answers`, depois avança a sessão.** A PK `(session_id, position)` barra a resposta duplicada antes de qualquer mudança na sessão, e o `update ... where current_index = $posição` é a segunda barreira.
+- **Última atividade = `current_served_at`.** Ele é gravado na criação e a cada resposta, quando a próxima pergunta é entregue, então já equivale a max(`created_at`, último `answered_at`) sem uma consulta extra.
 - **`cn` do shadcn** no lugar de `clsx` + `tailwind-merge`. É o utilitário que o shadcn instala hoje, e exige Node ≥ 22.
 - **Scripts de build negados no pnpm** (`pnpm-workspace.yaml`) para `@parcel/watcher` e `@swc/core`. Eles servem só ao extrator de mensagens do next-intl, que o projeto não usa.

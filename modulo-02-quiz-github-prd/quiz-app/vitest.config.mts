@@ -23,7 +23,8 @@ export default defineConfig({
     coverage: {
       provider: "v8",
       include: ["lib/**/*.ts"],
-      exclude: ["lib/utils.ts"],
+      // lib/db/ fala com o Postgres: coberto por `pnpm test:integration`.
+      exclude: ["lib/utils.ts", "lib/db/**"],
       thresholds: {
         "lib/**": { lines: 80, functions: 80, branches: 80, statements: 80 },
         "lib/scoring.ts": { 100: true },
