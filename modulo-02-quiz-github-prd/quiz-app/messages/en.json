@@ -80,5 +80,42 @@
     "errorExpired": "Your game expired after 60 minutes of inactivity.",
     "retry": "Try again",
     "newGame": "Start a new game"
+  },
+  "Result": {
+    "title": "Result",
+    "heading": "Game over · {level}",
+    "score": "Score",
+    "scoreOf": "out of {max} possible",
+    "correct": "Correct answers",
+    "correctOf": "{correct} of {total}",
+    "time": "Total time",
+    "duration": "{minutes, plural, =0 {} other {# min }}{seconds} s",
+    "maxStreak": "Longest streak",
+    "newBest": "New best score for this level!",
+    "bands": {
+      "explorer": {
+        "name": "Explorer",
+        "description": "You are just getting to know Claude Code. The review below is a good place to start."
+      },
+      "practitioner": {
+        "name": "Practitioner",
+        "description": "You know the basics. Dig into the ones you missed."
+      },
+      "specialist": {
+        "name": "Specialist",
+        "description": "You know Claude Code well for everyday data work."
+      },
+      "master": {
+        "name": "Claude Code for Data Master",
+        "description": "Near-total mastery. How about trying the next level?"
+      }
+    },
+    "reviewTitle": "Question review",
+    "yourAnswer": "Your answer: {answer, select, true {True} other {False}}",
+    "correctAnswer": "Correct answer: {answer, select, true {True} other {False}}",
+    "questionPoints": "{points} pts",
+    "playAgain": "Play again",
+    "otherLevel": "Choose another level",
+    "ranking": "See leaderboard"
   }
 }

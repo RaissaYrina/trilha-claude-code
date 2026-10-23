@@ -80,5 +80,42 @@
     "errorExpired": "Sua partida expirou depois de 60 minutos sem atividade.",
     "retry": "Tentar novamente",
     "newGame": "Começar nova partida"
+  },
+  "Result": {
+    "title": "Resultado",
+    "heading": "Partida concluída · {level}",
+    "score": "Pontuação",
+    "scoreOf": "de {max} possíveis",
+    "correct": "Acertos",
+    "correctOf": "{correct} de {total}",
+    "time": "Tempo total",
+    "duration": "{minutes, plural, =0 {} other {# min }}{seconds} s",
+    "maxStreak": "Maior sequência",
+    "newBest": "Nova melhor pontuação neste nível!",
+    "bands": {
+      "explorer": {
+        "name": "Explorador(a)",
+        "description": "Você está começando a conhecer o Claude Code. A revisão abaixo é um bom ponto de partida."
+      },
+      "practitioner": {
+        "name": "Praticante",
+        "description": "Você já usa o básico. Vale aprofundar nos pontos que errou."
+      },
+      "specialist": {
+        "name": "Especialista",
+        "description": "Você conhece bem o Claude Code no dia a dia com dados."
+      },
+      "master": {
+        "name": "Mestre do Claude Code para Dados",
+        "description": "Domínio quase total. Que tal tentar o próximo nível?"
+      }
+    },
+    "reviewTitle": "Revisão das perguntas",
+    "yourAnswer": "Sua resposta: {answer, select, true {Verdadeiro} other {Falso}}",
+    "correctAnswer": "Resposta certa: {answer, select, true {Verdadeiro} other {Falso}}",
+    "questionPoints": "{points} pts",
+    "playAgain": "Jogar de novo",
+    "otherLevel": "Escolher outro nível",
+    "ranking": "Ver ranking"
   }
 }
