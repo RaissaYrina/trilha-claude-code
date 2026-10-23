@@ -32,7 +32,7 @@ pnpm build && pnpm test:e2e   # Playwright + axe contra o build
 - **`proxy.ts` no lugar de `middleware.ts`.** É o novo nome da convenção no Next 16. Ele roda o middleware do next-intl para detectar o idioma (cookie `NEXT_LOCALE`, depois `Accept-Language`).
 - **Concorrência na resposta com update otimista**, sem RPC: `update ... where current_index = $posição`. Assim a fórmula de pontuação vive só em TypeScript (`lib/scoring.ts`), sem duplicação em SQL.
 - **Cenário de dados medido por um campo explícito.** Cada pergunta tem `dataScenario: boolean`, e um teste exige ≥ 70% por nível.
-- **Pontuação máxima calculada pela fórmula** (beginner 3.150, intermediate 4.730, advanced 6.300). O exemplo "1.840 / 2.520" do PRD é ilustrativo.
+- **Pontuação máxima calculada pela fórmula** (beginner 3.150, intermediate 4.731, advanced 6.300), somando `calculateScore` pergunta a pergunta. O plano previa 4.730, mas o arredondamento por pergunta (247,5 → 248, 292,5 → 293, 337,5 → 338) dá 4.731. O exemplo "1.840 / 2.520" do PRD é ilustrativo.
 - **Links da doc em `code.claude.com/docs/en/*`, sem redirect.** A documentação do Claude Code migrou de domínio. Cada `docUrl` usa a URL canônica atual, e o `pnpm check:links` exige 200 sem seguir redirects, para acusar a próxima migração.
 - **`check:links` roda direto no Node** (`scripts/check-links.mts`), que já executa TypeScript nativamente, sem `tsx` como dependência.
 - **Banco de perguntas validado contra a doc vigente (out/2026).** Algumas sementes do PRD mudaram de resposta: o modo inicial padrão passou a ser `auto` (as perguntas de permissão falam do modo Manual), o plan mode pode rodar comandos de exploração (as perguntas tratam de edição) e os comandos personalizados viraram skills.
