@@ -1,0 +1,18 @@
+{
+  "Metadata": {
+    "title": "Claude Code Quiz para Dados",
+    "description": "Quiz de Verdadeiro ou Falso sobre o Claude Code para engenheiros, analistas e cientistas de dados."
+  },
+  "Header": {
+    "skipToContent": "Pular para o conteúdo",
+    "home": "Página inicial",
+    "ranking": "Ranking",
+    "switchLocale": "Mudar idioma para inglês",
+    "toggleTheme": "Alternar tema claro/escuro"
+  },
+  "Footer": {
+    "source": "Código no GitHub",
+    "credit": "Feito por {author}",
+    "disclaimer": "Projeto independente, sem afiliação oficial com a Anthropic."
+  }
+}

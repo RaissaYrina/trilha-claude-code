@@ -1,0 +1,18 @@
+{
+  "Metadata": {
+    "title": "Claude Code Quiz for Data",
+    "description": "A True or False quiz about Claude Code for data engineers, analysts and scientists."
+  },
+  "Header": {
+    "skipToContent": "Skip to content",
+    "home": "Home page",
+    "ranking": "Leaderboard",
+    "switchLocale": "Switch language to Portuguese",
+    "toggleTheme": "Toggle light/dark theme"
+  },
+  "Footer": {
+    "source": "Source on GitHub",
+    "credit": "Made by {author}",
+    "disclaimer": "Independent project, not officially affiliated with Anthropic."
+  }
+}
