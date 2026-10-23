@@ -1,1 +1,512 @@
-[]
+[
+  {
+    "id": "int-001",
+    "level": "intermediate",
+    "topic": "memoria",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Um CLAUDE.md pode registrar as convenções de um projeto dbt, como o prefixo stg_ e as camadas staging e marts, para o Claude Code seguir.",
+      "en": "A CLAUDE.md can record a dbt project's conventions, such as the stg_ prefix and the staging and marts layers, for Claude Code to follow."
+    },
+    "explanation": {
+      "pt": "O CLAUDE.md do projeto guarda instruções compartilhadas pelo time, como convenções de nomes e de arquitetura. O Claude Code o carrega no início de cada sessão e trata o conteúdo como contexto.",
+      "en": "The project CLAUDE.md holds team-shared instructions such as naming and architecture conventions. Claude Code loads it at the start of every session and treats it as context."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "int-002",
+    "level": "intermediate",
+    "topic": "notebooks",
+    "roles": ["scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O Claude Code consegue editar um notebook Jupyter célula por célula, inserindo, substituindo ou removendo células.",
+      "en": "Claude Code can edit a Jupyter notebook cell by cell, inserting, replacing or deleting cells."
+    },
+    "explanation": {
+      "pt": "A ferramenta NotebookEdit altera células de arquivos .ipynb pelo id da célula, com as operações replace, insert e delete. Ela segue as mesmas regras de permissão das edições de arquivo.",
+      "en": "The NotebookEdit tool changes cells in .ipynb files by cell id, with replace, insert and delete operations. It follows the same permission rules as file edits."
+    },
+    "docUrl": "https://code.claude.com/docs/en/tools-reference"
+  },
+  {
+    "id": "int-003",
+    "level": "intermediate",
+    "topic": "plan-mode",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "No plan mode, o Claude Code já edita os arquivos SQL enquanto monta o plano, e você só aprova o resultado no final.",
+      "en": "In plan mode, Claude Code edits the SQL files while it builds the plan, and you only approve the result at the end."
+    },
+    "explanation": {
+      "pt": "No plan mode, o Claude Code lê arquivos e escreve um plano, mas as edições ficam bloqueadas até você aprovar. Você pode até editar o plano antes (Ctrl+G) ou pedir que ele continue planejando.",
+      "en": "In plan mode, Claude Code reads files and writes a plan, but edits stay blocked until you approve it. You can even edit the plan first (Ctrl+G) or ask it to keep planning."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permission-modes"
+  },
+  {
+    "id": "int-004",
+    "level": "intermediate",
+    "topic": "plan-mode",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "No plan mode, o Claude Code pode rodar comandos para explorar um pipeline, como listar arquivos, mas não edita o código antes de o plano ser aprovado.",
+      "en": "In plan mode, Claude Code can run commands to explore a pipeline, such as listing files, but does not edit code before the plan is approved."
+    },
+    "explanation": {
+      "pt": "A documentação diz que, no plan mode, o Claude Code lê arquivos, roda comandos de shell para explorar e escreve um plano, mas não edita o código-fonte. Comandos fora do conjunto só de leitura ainda passam por aprovação ou pelo classificador.",
+      "en": "The docs say that in plan mode Claude Code reads files, runs shell commands to explore and writes a plan, but does not edit your source. Commands outside the read-only set still go through approval or the classifier."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permission-modes"
+  },
+  {
+    "id": "int-005",
+    "level": "intermediate",
+    "topic": "contexto",
+    "roles": ["scientist", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O /compact resume a conversa para liberar contexto e aceita instruções de foco, como \"mantenha as decisões sobre a limpeza dos dados\".",
+      "en": "/compact summarizes the conversation to free up context and accepts focus instructions, such as \"keep the data cleaning decisions\"."
+    },
+    "explanation": {
+      "pt": "O /compact [instruções] resume a conversa até ali e aceita um texto opcional dizendo no que o resumo deve focar. É útil em sessões longas de exploração de dados.",
+      "en": "/compact [instructions] summarizes the conversation so far and takes optional text telling the summary what to focus on. It is handy in long data exploration sessions."
+    },
+    "docUrl": "https://code.claude.com/docs/en/commands"
+  },
+  {
+    "id": "int-006",
+    "level": "intermediate",
+    "topic": "contexto",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O /clear resume a conversa e segue na mesma sessão, mantendo no contexto o histórico da análise.",
+      "en": "/clear summarizes the conversation and continues the same session, keeping the analysis history in context."
+    },
+    "explanation": {
+      "pt": "O /clear inicia uma conversa nova, com contexto vazio. Quem resume a conversa e continua nela é o /compact. A conversa anterior ainda pode ser retomada pelo /resume.",
+      "en": "/clear starts a new conversation with empty context. Summarizing and continuing is what /compact does. The previous conversation can still be reopened with /resume."
+    },
+    "docUrl": "https://code.claude.com/docs/en/commands"
+  },
+  {
+    "id": "int-007",
+    "level": "intermediate",
+    "topic": "skills",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Um skill em .claude/skills/ pode encapsular uma tarefa recorrente, como gerar testes para um novo modelo dbt, e ser chamado com /nome-do-skill.",
+      "en": "A skill in .claude/skills/ can package a recurring task, such as generating tests for a new dbt model, and be run with /skill-name."
+    },
+    "explanation": {
+      "pt": "Um arquivo .claude/skills/<nome>/SKILL.md cria o comando /<nome>. Os comandos personalizados foram incorporados aos skills, e os arquivos antigos em .claude/commands/ continuam funcionando.",
+      "en": "A .claude/skills/<name>/SKILL.md file creates the /<name> command. Custom commands were merged into skills, and older files in .claude/commands/ keep working."
+    },
+    "docUrl": "https://code.claude.com/docs/en/skills"
+  },
+  {
+    "id": "int-008",
+    "level": "intermediate",
+    "topic": "skills",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O Claude Code pode usar por conta própria um skill de checagem de qualidade de dados quando a descrição dele combina com a tarefa.",
+      "en": "Claude Code can use a data quality check skill on its own when the skill's description matches the task."
+    },
+    "explanation": {
+      "pt": "Por padrão, tanto você quanto o Claude podem acionar um skill. Ele decide pela descrição e só carrega o conteúdo quando for usar. Para impedir o acionamento automático, use disable-model-invocation.",
+      "en": "By default, both you and Claude can invoke a skill. Claude decides from its description and loads the body only when it uses it. To block automatic use, set disable-model-invocation."
+    },
+    "docUrl": "https://code.claude.com/docs/en/skills"
+  },
+  {
+    "id": "int-009",
+    "level": "intermediate",
+    "topic": "skills",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Um skill de validação de dados fica só na máquina de quem o criou: não há como compartilhá-lo com o time pelo repositório.",
+      "en": "A data validation skill stays on its author's machine: there is no way to share it with the team through the repository."
+    },
+    "explanation": {
+      "pt": "Skills do projeto ficam em .claude/skills/ e são compartilhados ao commitar essa pasta. Os que ficam só na sua máquina são os pessoais, em ~/.claude/skills/.",
+      "en": "Project skills live in .claude/skills/ and are shared by committing that folder. The ones that stay on your machine are personal skills, in ~/.claude/skills/."
+    },
+    "docUrl": "https://code.claude.com/docs/en/skills"
+  },
+  {
+    "id": "int-010",
+    "level": "intermediate",
+    "topic": "memoria",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": false,
+    "answer": true,
+    "statement": {
+      "pt": "O /init analisa o repositório e cria um CLAUDE.md inicial com comandos de build, de testes e convenções que encontrar.",
+      "en": "/init analyzes the repository and creates a starter CLAUDE.md with the build commands, test commands and conventions it finds."
+    },
+    "explanation": {
+      "pt": "O /init gera um CLAUDE.md inicial a partir da análise da base de código. Depois vale revisar e enxugar o arquivo.",
+      "en": "/init generates a starter CLAUDE.md by analyzing the codebase. It is worth reviewing and trimming the file afterwards."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "int-011",
+    "level": "intermediate",
+    "topic": "memoria",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Rodar /init num projeto de dados que já tem CLAUDE.md apaga o arquivo atual e gera outro do zero.",
+      "en": "Running /init on a data project that already has a CLAUDE.md deletes the current file and generates a new one from scratch."
+    },
+    "explanation": {
+      "pt": "Se já existe um CLAUDE.md, o /init sugere melhorias em vez de sobrescrever o arquivo. As regras que o time já escreveu não se perdem.",
+      "en": "If a CLAUDE.md already exists, /init suggests improvements instead of overwriting it. The rules your team already wrote are not lost."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "int-012",
+    "level": "intermediate",
+    "topic": "memoria",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O CLAUDE.local.md serve para instruções pessoais num projeto, como o caminho da sua base de testes, e deve ficar fora do Git.",
+      "en": "CLAUDE.local.md is for personal instructions in a project, such as the path to your test database, and should stay out of git."
+    },
+    "explanation": {
+      "pt": "O ./CLAUDE.local.md é a memória local do projeto, só sua. A documentação recomenda adicioná-lo ao .gitignore, enquanto o CLAUDE.md fica para as instruções do time.",
+      "en": "./CLAUDE.local.md is the project's local memory, just for you. The docs recommend adding it to .gitignore, while CLAUDE.md holds the team's instructions."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "int-013",
+    "level": "intermediate",
+    "topic": "memoria",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Um CLAUDE.md não pode referenciar outros arquivos, então o dicionário de dados precisa ser copiado para dentro dele.",
+      "en": "A CLAUDE.md cannot reference other files, so the data dictionary has to be copied into it."
+    },
+    "explanation": {
+      "pt": "O CLAUDE.md pode importar outros arquivos com a sintaxe @caminho/do/arquivo, como @docs/dicionario-de-dados.md. Os imports podem ser encadeados até quatro níveis.",
+      "en": "CLAUDE.md can import other files with the @path/to/file syntax, such as @docs/data-dictionary.md. Imports can be nested up to four hops deep."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "int-014",
+    "level": "intermediate",
+    "topic": "memoria",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Quanto maior o CLAUDE.md, melhor: a recomendação é colar nele a documentação completa de todas as tabelas do warehouse.",
+      "en": "The bigger the CLAUDE.md, the better: the recommendation is to paste the full documentation of every warehouse table into it."
+    },
+    "explanation": {
+      "pt": "A documentação recomenda um CLAUDE.md curto, com menos de 200 linhas, porque ele ocupa contexto em toda sessão. Para cada linha, pergunte se removê-la faria o Claude errar.",
+      "en": "The docs recommend a short CLAUDE.md, under 200 lines, because it takes up context in every session. For each line, ask whether removing it would make Claude make mistakes."
+    },
+    "docUrl": "https://code.claude.com/docs/en/best-practices"
+  },
+  {
+    "id": "int-015",
+    "level": "intermediate",
+    "topic": "settings",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Permissões que o time de dados quer compartilhar, como liberar o comando `dbt test`, podem ficar no .claude/settings.json commitado no repositório.",
+      "en": "Permissions the data team wants to share, such as allowing the `dbt test` command, can go in a .claude/settings.json committed to the repository."
+    },
+    "explanation": {
+      "pt": "O .claude/settings.json é o escopo de projeto compartilhado: commitado, vale para todos que trabalham no repositório. Preferências só suas ficam no .claude/settings.local.json.",
+      "en": ".claude/settings.json is the shared project scope: once committed, it applies to everyone working in the repository. Personal preferences go in .claude/settings.local.json."
+    },
+    "docUrl": "https://code.claude.com/docs/en/settings"
+  },
+  {
+    "id": "int-016",
+    "level": "intermediate",
+    "topic": "seguranca",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Uma regra deny como Read(./.env) impede as ferramentas de arquivo do Claude Code de ler o arquivo com as credenciais do warehouse.",
+      "en": "A deny rule such as Read(./.env) stops Claude Code's file tools from reading the file holding the warehouse credentials."
+    },
+    "explanation": {
+      "pt": "Regras deny de Read bloqueiam leitura e edição do caminho pelas ferramentas de arquivo. Elas não alcançam scripts que abrem o arquivo por conta própria; para isso, a doc indica o sandbox.",
+      "en": "Read deny rules block the file tools from reading and editing that path. They don't cover scripts that open the file themselves; for that, the docs point to the sandbox."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "int-017",
+    "level": "intermediate",
+    "topic": "seguranca",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Listar a pasta de dados sensíveis num arquivo .claudeignore impede o Claude Code de ler esses arquivos.",
+      "en": "Listing the sensitive data folder in a .claudeignore file stops Claude Code from reading those files."
+    },
+    "explanation": {
+      "pt": "A documentação avisa que um .claudeignore não tem efeito. Para bloquear a leitura, use regras deny de Read, como Read(./dados-sensiveis/**).",
+      "en": "The docs warn that a .claudeignore file has no effect. To block reads, use Read deny rules, such as Read(./sensitive-data/**)."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "int-018",
+    "level": "intermediate",
+    "topic": "permissoes",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "No modo acceptEdits, além de editar arquivos sem perguntar, o Claude Code roda sem aprovação qualquer comando, como um script que recarrega tabelas.",
+      "en": "In acceptEdits mode, besides editing files without asking, Claude Code runs any command without approval, such as a script that reloads tables."
+    },
+    "explanation": {
+      "pt": "O acceptEdits libera edições de arquivo e comandos comuns de sistema de arquivos (mkdir, mv, cp...) dentro da pasta de trabalho. Os demais comandos de terminal continuam pedindo aprovação.",
+      "en": "acceptEdits allows file edits and common filesystem commands (mkdir, mv, cp...) inside the working directory. Other terminal commands still ask for approval."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permission-modes"
+  },
+  {
+    "id": "int-019",
+    "level": "intermediate",
+    "topic": "cli",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Com --add-dir, o Claude Code também pode ler e editar arquivos de outra pasta, como um repositório separado com dados de referência.",
+      "en": "With --add-dir, Claude Code can also read and edit files in another folder, such as a separate repository with reference data."
+    },
+    "explanation": {
+      "pt": "A flag --add-dir adiciona diretórios de trabalho extras. Para deixar isso permanente, use permissions.additionalDirectories nas configurações.",
+      "en": "The --add-dir flag adds extra working directories. To make it permanent, use permissions.additionalDirectories in settings."
+    },
+    "docUrl": "https://code.claude.com/docs/en/cli-reference"
+  },
+  {
+    "id": "int-020",
+    "level": "intermediate",
+    "topic": "cli",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Com claude -p, dá para enviar o log de um job de dados pela entrada padrão, como em `cat erro.log | claude -p \"explique o erro\"`.",
+      "en": "With claude -p, you can send a data job's log through standard input, as in `cat error.log | claude -p \"explain the error\"`."
+    },
+    "explanation": {
+      "pt": "O modo -p (print) responde sem abrir a sessão interativa e processa conteúdo recebido por pipe. Isso facilita usar o Claude Code em scripts.",
+      "en": "Print mode (-p) answers without opening an interactive session and processes piped content. That makes it easy to use Claude Code in scripts."
+    },
+    "docUrl": "https://code.claude.com/docs/en/cli-reference"
+  },
+  {
+    "id": "int-021",
+    "level": "intermediate",
+    "topic": "cli",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O claude -p só devolve texto livre: não há como pedir a saída em JSON para outro script do pipeline ler.",
+      "en": "claude -p only returns free text: there is no way to ask for JSON output for another pipeline script to read."
+    },
+    "explanation": {
+      "pt": "A flag --output-format aceita text, json e stream-json no modo -p. A saída em JSON é a indicada para consumo por outros programas.",
+      "en": "The --output-format flag accepts text, json and stream-json in -p mode. JSON output is the one meant for other programs to consume."
+    },
+    "docUrl": "https://code.claude.com/docs/en/cli-reference"
+  },
+  {
+    "id": "int-022",
+    "level": "intermediate",
+    "topic": "contexto",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O /context mostra quanto da janela de contexto está em uso, o que ajuda numa sessão longa de exploração de dados.",
+      "en": "/context shows how much of the context window is in use, which helps in a long data exploration session."
+    },
+    "explanation": {
+      "pt": "O /context exibe o uso do contexto como uma grade colorida, com sugestões para ferramentas e memórias que ocupam muito espaço.",
+      "en": "/context displays context usage as a colored grid, with suggestions for tools and memory that take up a lot of space."
+    },
+    "docUrl": "https://code.claude.com/docs/en/commands"
+  },
+  {
+    "id": "int-023",
+    "level": "intermediate",
+    "topic": "contexto",
+    "roles": ["analyst", "scientist", "engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Conforme a janela de contexto enche, o Claude Code pode começar a esquecer instruções dadas no início de uma longa sessão de análise.",
+      "en": "As the context window fills up, Claude Code may start forgetting instructions given early in a long analysis session."
+    },
+    "explanation": {
+      "pt": "A documentação avisa que o desempenho cai conforme o contexto enche e que instruções antigas podem se perder. Regras permanentes devem ir para o CLAUDE.md.",
+      "en": "The docs warn that performance degrades as the context fills and that early instructions may be lost. Persistent rules belong in CLAUDE.md."
+    },
+    "docUrl": "https://code.claude.com/docs/en/best-practices"
+  },
+  {
+    "id": "int-024",
+    "level": "intermediate",
+    "topic": "contexto",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O /btw permite fazer uma pergunta paralela, como o significado de uma coluna, sem adicionar essa troca à conversa.",
+      "en": "/btw lets you ask a side question, such as what a column means, without adding that exchange to the conversation."
+    },
+    "explanation": {
+      "pt": "O /btw responde uma dúvida sobre a sessão atual sem colocá-la no histórico, o que evita gastar contexto com perguntas laterais.",
+      "en": "/btw answers a question about the current session without putting it into the history, so side questions don't use up context."
+    },
+    "docUrl": "https://code.claude.com/docs/en/commands"
+  },
+  {
+    "id": "int-025",
+    "level": "intermediate",
+    "topic": "boas-praticas",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Dar ao Claude Code uma forma de verificar o próprio trabalho, como testes de qualidade de dados que ele possa rodar, é uma boa prática recomendada.",
+      "en": "Giving Claude Code a way to verify its own work, such as data quality tests it can run, is a recommended best practice."
+    },
+    "explanation": {
+      "pt": "As boas práticas recomendam dar ao Claude uma checagem executável: testes, um build ou um print para comparar. Sem isso, ele para quando o trabalho apenas parece pronto.",
+      "en": "The best practices recommend giving Claude a check it can run: tests, a build or a screenshot to compare. Without one, it stops when the work merely looks done."
+    },
+    "docUrl": "https://code.claude.com/docs/en/best-practices"
+  },
+  {
+    "id": "int-026",
+    "level": "intermediate",
+    "topic": "boas-praticas",
+    "roles": ["analyst", "scientist", "engineer"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Ao passar de uma análise para uma tarefa sem relação, a recomendação é seguir na mesma conversa para aproveitar o contexto acumulado.",
+      "en": "When moving from an analysis to an unrelated task, the recommendation is to stay in the same conversation to reuse the accumulated context."
+    },
+    "explanation": {
+      "pt": "A recomendação é rodar /clear entre tarefas sem relação. Contexto irrelevante ocupa espaço e piora o desempenho.",
+      "en": "The recommendation is to run /clear between unrelated tasks. Irrelevant context takes up space and degrades performance."
+    },
+    "docUrl": "https://code.claude.com/docs/en/best-practices"
+  },
+  {
+    "id": "int-027",
+    "level": "intermediate",
+    "topic": "vscode",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Na extensão do VS Code, o Claude Code vê automaticamente o trecho que você selecionou num arquivo SQL.",
+      "en": "In the VS Code extension, Claude Code automatically sees the text you selected in a SQL file."
+    },
+    "explanation": {
+      "pt": "A extensão envia a seleção como contexto, e o atalho Alt+K (Option+K no Mac) insere uma referência com o intervalo de linhas, como @consulta.sql#5-10.",
+      "en": "The extension sends your selection as context, and Alt+K (Option+K on Mac) inserts a reference with the line range, such as @query.sql#5-10."
+    },
+    "docUrl": "https://code.claude.com/docs/en/vs-code"
+  },
+  {
+    "id": "int-028",
+    "level": "intermediate",
+    "topic": "vscode",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Na extensão do VS Code, não há como revisar o plano antes de o Claude Code começar a alterar os modelos de dados.",
+      "en": "In the VS Code extension, there is no way to review the plan before Claude Code starts changing the data models."
+    },
+    "explanation": {
+      "pt": "A extensão abre o plano como um documento Markdown, no qual você pode revisar, editar e comentar antes de aceitar. Só então o Claude Code começa as alterações.",
+      "en": "The extension opens the plan as a Markdown document that you can review, edit and comment on before accepting. Only then does Claude Code start making changes."
+    },
+    "docUrl": "https://code.claude.com/docs/en/vs-code"
+  },
+  {
+    "id": "int-029",
+    "level": "intermediate",
+    "topic": "subagents",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Um subagent usado para investigar um pipeline compartilha a mesma janela de contexto da conversa principal.",
+      "en": "A subagent used to investigate a pipeline shares the same context window as the main conversation."
+    },
+    "explanation": {
+      "pt": "Cada subagent tem sua própria janela de contexto. Por isso a documentação recomenda usá-los em investigações: a pesquisa não ocupa o contexto principal, que recebe só o resultado.",
+      "en": "Each subagent has its own context window. That is why the docs recommend them for investigations: the research stays out of the main context, which only gets the result."
+    },
+    "docUrl": "https://code.claude.com/docs/en/best-practices"
+  },
+  {
+    "id": "int-030",
+    "level": "intermediate",
+    "topic": "plan-mode",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Para usar o plan mode antes de mexer num pipeline, é preciso encerrar a sessão e reiniciar o Claude Code com uma flag.",
+      "en": "To use plan mode before touching a pipeline, you have to end the session and restart Claude Code with a flag."
+    },
+    "explanation": {
+      "pt": "Dá para entrar no plan mode no meio da sessão com Shift+Tab ou com /plan no início do prompt. A flag --permission-mode plan é só mais uma opção, para já começar nele.",
+      "en": "You can enter plan mode mid-session with Shift+Tab or by starting a prompt with /plan. The --permission-mode plan flag is just another option, to start in it."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permission-modes"
+  }
+]
