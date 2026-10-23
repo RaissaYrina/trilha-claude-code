@@ -6,7 +6,7 @@ import { createSession } from "@/lib/db/sessions";
 import { LEVELS } from "@/lib/levels";
 import { getLevelQuestions } from "@/lib/questions/loader";
 import { pickQuestions } from "@/lib/questions/picker";
-import { publicQuestionAt } from "@/lib/session";
+import { publicQuestionAt, type CreatedSession } from "@/lib/session";
 
 export const runtime = "nodejs";
 
@@ -36,7 +36,7 @@ export const POST = withErrors(async (req: Request) => {
       sessionId: session.id,
       total: session.question_ids.length,
       question: publicQuestionAt(session, 0, locale),
-    },
+    } satisfies CreatedSession,
     { status: 201 },
   );
 });

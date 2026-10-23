@@ -159,6 +159,28 @@ export function applyAnswer(
   };
 }
 
+/** Corpo de `POST /api/sessions/:id/answer` (PRD §6.5, mais `bonus`). */
+export type AnswerResponse = {
+  correct: boolean;
+  correctAnswer: boolean;
+  explanation: string;
+  docUrl: string;
+  points: number;
+  bonus: number;
+  score: number;
+  streak: number;
+  timeMs: number;
+  next: PublicQuestion | null;
+  completed: boolean;
+};
+
+/** Corpo de `POST /api/sessions` (201). */
+export type CreatedSession = {
+  sessionId: string;
+  total: number;
+  question: PublicQuestion;
+};
+
 export type InProgressState = {
   status: "in_progress";
   level: Level;

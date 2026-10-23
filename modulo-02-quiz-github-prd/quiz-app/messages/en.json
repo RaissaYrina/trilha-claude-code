@@ -53,5 +53,32 @@
         "description": "MCP with databases and warehouses, hooks, permission rules, subagents, skills, non-interactive mode in CI and orchestrators, GitHub Actions and the Agent SDK."
       }
     }
+  },
+  "Quiz": {
+    "title": "Game · {level}",
+    "loading": "Setting up your game…",
+    "progress": "Question {current} of {total}",
+    "score": "Points",
+    "streak": "Streak",
+    "streakLabel": "{count, plural, one {# correct in a row} other {# correct in a row}}",
+    "timer": "Time",
+    "statement": "Statement {current} of {total}",
+    "answerTrue": "True",
+    "answerFalse": "False",
+    "shortcuts": "Shortcuts: T for True, F for False, arrow keys to switch and Enter to confirm.",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "answerWas": "The statement is {answer, select, true {true} other {false}}.",
+    "points": "+{points} points",
+    "bonus": "includes a {bonus}-point time bonus",
+    "docLink": "Read the docs",
+    "newTab": "(opens in a new tab)",
+    "next": "Next question",
+    "seeResult": "See result",
+    "errorTitle": "Something went wrong",
+    "errorNetwork": "Could not reach the server. Check your connection.",
+    "errorExpired": "Your game expired after 60 minutes of inactivity.",
+    "retry": "Try again",
+    "newGame": "Start a new game"
   }
 }

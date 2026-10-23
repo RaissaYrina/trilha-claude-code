@@ -53,5 +53,32 @@
         "description": "MCP com bancos e warehouses, hooks, regras de permissão, subagents, skills, modo não interativo em CI e orquestradores, GitHub Actions e Agent SDK."
       }
     }
+  },
+  "Quiz": {
+    "title": "Partida · {level}",
+    "loading": "Preparando sua partida…",
+    "progress": "Pergunta {current} de {total}",
+    "score": "Pontos",
+    "streak": "Sequência",
+    "streakLabel": "{count, plural, one {# acerto seguido} other {# acertos seguidos}}",
+    "timer": "Tempo",
+    "statement": "Afirmação {current} de {total}",
+    "answerTrue": "Verdadeiro",
+    "answerFalse": "Falso",
+    "shortcuts": "Atalhos: V para Verdadeiro, F para Falso, setas para trocar e Enter para confirmar.",
+    "correct": "Correto!",
+    "incorrect": "Incorreto",
+    "answerWas": "A afirmação é {answer, select, true {verdadeira} other {falsa}}.",
+    "points": "+{points} pontos",
+    "bonus": "inclui {bonus} de bônus de tempo",
+    "docLink": "Ler na documentação",
+    "newTab": "(abre em nova aba)",
+    "next": "Próxima pergunta",
+    "seeResult": "Ver resultado",
+    "errorTitle": "Algo deu errado",
+    "errorNetwork": "Não foi possível falar com o servidor. Verifique sua conexão.",
+    "errorExpired": "Sua partida expirou depois de 60 minutos sem atividade.",
+    "retry": "Tentar novamente",
+    "newGame": "Começar nova partida"
   }
 }

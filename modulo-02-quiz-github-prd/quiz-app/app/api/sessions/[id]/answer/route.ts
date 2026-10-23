@@ -12,6 +12,7 @@ import {
   isExpired,
   pickLocale,
   publicQuestionAt,
+  type AnswerResponse,
 } from "@/lib/session";
 
 export const runtime = "nodejs";
@@ -89,6 +90,6 @@ export const POST = withErrors(
         ? null
         : publicQuestionAt(row, update.current_index, locale),
       completed: outcome.completed,
-    });
+    } satisfies AnswerResponse);
   },
 );
