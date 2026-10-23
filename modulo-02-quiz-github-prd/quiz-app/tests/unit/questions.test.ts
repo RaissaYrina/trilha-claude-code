@@ -29,27 +29,25 @@ describe.each(LEVELS)("banco de perguntas: %s", (level) => {
     expect(parsed[level].error?.issues ?? []).toEqual([]);
   });
 
-  // Os níveis entram um por vez durante o M2; os vazios ainda não são checados.
   const questions = parsed[level].data ?? [];
-  const pending = questions.length === 0;
 
-  it.skipIf(pending)("tem 30 perguntas", () => {
+  it("tem 30 perguntas", () => {
     expect(questions).toHaveLength(30);
   });
 
-  it.skipIf(pending)("tem entre 40% e 60% de respostas verdadeiras", () => {
+  it("tem entre 40% e 60% de respostas verdadeiras", () => {
     const trueShare = share(questions, (q) => q.answer);
     expect(trueShare).toBeGreaterThanOrEqual(0.4);
     expect(trueShare).toBeLessThanOrEqual(0.6);
   });
 
-  it.skipIf(pending).each(ROLES)("a função %s aparece em ≥ 30%%", (role) => {
+  it.each(ROLES)("a função %s aparece em ≥ 30%%", (role) => {
     expect(
       share(questions, (q) => q.roles.includes(role)),
     ).toBeGreaterThanOrEqual(0.3);
   });
 
-  it.skipIf(pending)("≥ 70% das perguntas usam um cenário de dados", () => {
+  it("≥ 70% das perguntas usam um cenário de dados", () => {
     expect(share(questions, (q) => q.dataScenario)).toBeGreaterThanOrEqual(0.7);
   });
 });
