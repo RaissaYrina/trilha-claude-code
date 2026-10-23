@@ -15,11 +15,7 @@ export function Header() {
         {t("skipToContent")}
       </a>
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-2 px-4">
-        <Link
-          href="/"
-          aria-label={t("home")}
-          className="font-mono text-sm font-semibold sm:text-base"
-        >
+        <Link href="/" className="font-mono text-sm font-semibold sm:text-base">
           <span className="text-primary">&gt;</span> cc-quiz
           <span className="text-primary">_</span>data
         </Link>

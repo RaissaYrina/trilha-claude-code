@@ -13,7 +13,8 @@ export function LocaleSwitcher() {
     <Link
       href={pathname}
       locale={other}
-      aria-label={t("switchLocale")}
+      // O nome acessível começa pelo texto visível (WCAG 2.5.3).
+      aria-label={`${other.toUpperCase()} – ${t("switchLocale")}`}
       className="hover:bg-accent focus-visible:ring-ring rounded-md px-2 py-1 font-mono text-sm uppercase focus-visible:ring-2 focus-visible:outline-none"
     >
       {other}

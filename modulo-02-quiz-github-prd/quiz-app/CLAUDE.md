@@ -22,16 +22,16 @@ A especificação completa está em `../prd.md` (pasta do módulo), que é a fon
 
 ## Comandos (pnpm)
 
-| Comando                                   | Uso                                                                           |
-| ----------------------------------------- | ----------------------------------------------------------------------------- |
-| `pnpm dev` / `pnpm build` / `pnpm start`  | Next.js                                                                       |
-| `pnpm lint`                               | ESLint + Prettier                                                             |
-| `pnpm typecheck`                          | `tsc --noEmit`                                                                |
-| `pnpm test`                               | Vitest (unit, componentes, API), com cobertura                                |
-| `pnpm test -- tests/unit/scoring.test.ts` | Um único arquivo de teste                                                     |
-| `pnpm test:e2e`                           | Playwright + `@axe-core/playwright` contra o build                            |
-| `pnpm check:links`                        | Verifica se todo `docUrl` responde 200. Roda no CI semanal e não bloqueia PRs |
-| `pnpm db:migrate`                         | Aplica `supabase/migrations/` (Supabase CLI)                                  |
+| Comando                                  | Uso                                                                           |
+| ---------------------------------------- | ----------------------------------------------------------------------------- |
+| `pnpm dev` / `pnpm build` / `pnpm start` | Next.js                                                                       |
+| `pnpm lint`                              | ESLint + Prettier                                                             |
+| `pnpm typecheck`                         | `tsc --noEmit`                                                                |
+| `pnpm test`                              | Vitest (unit, componentes, API), com cobertura                                |
+| `pnpm test tests/unit/scoring.test.ts`   | Um único arquivo (sem `--`: o pnpm 12 repassaria o `--` e rodaria tudo)       |
+| `pnpm test:e2e`                          | Playwright + `@axe-core/playwright` contra o build                            |
+| `pnpm check:links`                       | Verifica se todo `docUrl` responde 200. Roda no CI semanal e não bloqueia PRs |
+| `pnpm db:migrate`                        | Aplica `supabase/migrations/` (Supabase CLI)                                  |
 
 Pipeline de CI em todo PR: install → lint → typecheck → test → build → E2E.
 
