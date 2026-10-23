@@ -14,5 +14,45 @@
     "source": "Código no GitHub",
     "credit": "Feito por {author}",
     "disclaimer": "Projeto independente, sem afiliação oficial com a Anthropic."
+  },
+  "Home": {
+    "eyebrow": "$ claude --quiz dados",
+    "title": "Claude Code Quiz para Profissionais de Dados",
+    "subtitle": "Teste o que você sabe sobre o Claude Code em cenários reais de dados: SQL, dbt, notebooks, pipelines e warehouses. 15 afirmações de Verdadeiro ou Falso, com explicação e link para a documentação depois de cada resposta.",
+    "whatIs": "O Claude Code é a ferramenta agêntica de programação da Anthropic: ele lê o seu repositório, edita arquivos e executa comandos a partir de instruções em linguagem natural.",
+    "start": "Começar",
+    "ranking": "Ver ranking",
+    "audienceTitle": "Feito para",
+    "roles": {
+      "engineering": "Engenharia de Dados",
+      "analytics": "Análise de Dados",
+      "science": "Ciência de Dados"
+    }
+  },
+  "Play": {
+    "title": "Escolha o nível",
+    "subtitle": "Cada partida sorteia 15 perguntas do nível. Responda rápido para ganhar bônus e mantenha a sequência de acertos.",
+    "questionCount": "{count} perguntas",
+    "bestScore": "Sua melhor pontuação: {score}",
+    "noBestScore": "Você ainda não jogou este nível.",
+    "start": "Jogar",
+    "startLevel": "Jogar o nível {level}",
+    "levels": {
+      "beginner": {
+        "name": "Iniciante",
+        "audience": "Lideranças de dados e analistas começando",
+        "description": "O que é o Claude Code e onde ele roda, casos de uso em dados (SQL, documentação de métricas, análises recorrentes) e cuidados com dados sensíveis."
+      },
+      "intermediate": {
+        "name": "Intermediário",
+        "audience": "Analistas, cientistas e engenheiros no dia a dia",
+        "description": "CLAUDE.md para projetos de dados, /init, notebooks Jupyter, testes, plan mode, modos de permissão, gestão de contexto e comandos personalizados."
+      },
+      "advanced": {
+        "name": "Avançado",
+        "audience": "Engenheiros de dados e power users",
+        "description": "MCP com bancos e warehouses, hooks, regras de permissão, subagents, skills, modo não interativo em CI e orquestradores, GitHub Actions e Agent SDK."
+      }
+    }
   }
 }
