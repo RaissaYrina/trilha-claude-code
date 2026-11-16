@@ -23,10 +23,14 @@ begin
 end;
 $$;
 
--- Posição de uma entrada no ranking do seu nível, encontrada pelo share_id da
--- sessão. Desempate: maior score, menor tempo total, data mais antiga.
+-- Posição no ranking do nível `p_level` da entrada da sessão `p_share_id`.
+-- Desempate: maior score, menor tempo total, data mais antiga.
 -- `p_since` nulo = "Sempre"; senão só conta (e só devolve) entradas a partir dela.
-create function leaderboard_position(p_share_id text, p_since timestamptz default null)
+create function leaderboard_position(
+  p_share_id text,
+  p_level    quiz_level,
+  p_since    timestamptz default null
+)
 returns table (
   rank          bigint,
   nickname      text,
@@ -58,9 +62,10 @@ as $$
   from leaderboard_entries e
   join quiz_sessions s on s.id = e.session_id
   where s.share_id = p_share_id
+    and e.level = p_level
     and (p_since is null or e.created_at >= p_since);
 $$;
 
 -- Funções nascem executáveis por PUBLIC; só a service_role deve chamá-las.
 revoke execute on function rate_limit_hit(text, timestamptz) from public, anon, authenticated;
-revoke execute on function leaderboard_position(text, timestamptz) from public, anon, authenticated;
+revoke execute on function leaderboard_position(text, quiz_level, timestamptz) from public, anon, authenticated;

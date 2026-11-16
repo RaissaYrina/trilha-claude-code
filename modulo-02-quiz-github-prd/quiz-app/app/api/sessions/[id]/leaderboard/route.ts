@@ -75,7 +75,7 @@ export const POST = withErrors(
       );
     }
 
-    const position = await findPosition(row.share_id, null);
+    const position = await findPosition(row.share_id, row.level, null);
     if (!position) throw new Error(`Entrada da sessão ${row.id} sumiu.`);
     return Response.json(
       { rank: position.rank, shareId: row.share_id } satisfies SubmittedEntry,

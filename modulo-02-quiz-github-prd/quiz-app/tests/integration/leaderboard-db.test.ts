@@ -75,9 +75,15 @@ describe("lib/db/leaderboard contra o Postgres local", () => {
       "it_lento",
     ]);
 
-    expect((await findPosition(fast.row.share_id, null))?.rank).toBe(1);
-    expect((await findPosition(tieLater.row.share_id, null))?.rank).toBe(2);
-    expect(await findPosition(slow.row.share_id, null)).toMatchObject({
+    expect(
+      (await findPosition(fast.row.share_id, "intermediate", null))?.rank,
+    ).toBe(1);
+    expect(
+      (await findPosition(tieLater.row.share_id, "intermediate", null))?.rank,
+    ).toBe(2);
+    expect(
+      await findPosition(slow.row.share_id, "intermediate", null),
+    ).toMatchObject({
       rank: 3,
       nickname: "it_lento",
       score: HUGE,
@@ -88,8 +94,8 @@ describe("lib/db/leaderboard contra o Postgres local", () => {
   it("leaderboard_position filtra pelo período", async () => {
     const { row } = await entry(2, 2);
     const future = new Date(Date.now() + 60_000).toISOString();
-    expect(await findPosition(row.share_id, future)).toBeNull();
-    expect(await findPosition("nao-existe", null)).toBeNull();
+    expect(await findPosition(row.share_id, "intermediate", future)).toBeNull();
+    expect(await findPosition("nao-existe", "intermediate", null)).toBeNull();
   });
 });
 

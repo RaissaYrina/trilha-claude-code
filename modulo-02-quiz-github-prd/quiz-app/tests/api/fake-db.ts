@@ -56,15 +56,12 @@ export function createFakeDb() {
         .slice(0, limit)
         .map(toRow);
     },
-    async findPosition(shareId, since) {
+    async findPosition(shareId, level, since) {
       const session = [...sessions.values()].find(
         (s) => s.share_id === shareId,
       );
       const ranked = entries
-        .filter(
-          (e) =>
-            e.level === session?.level && (!since || e.created_at >= since),
-        )
+        .filter((e) => e.level === level && (!since || e.created_at >= since))
         .sort(byRanking);
       const index = ranked.findIndex((e) => e.session_id === session?.id);
       return index < 0 ? null : { ...toRow(ranked[index]), rank: index + 1 };

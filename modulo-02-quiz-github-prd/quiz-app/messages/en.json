@@ -116,6 +116,45 @@
     "questionPoints": "{points} pts",
     "playAgain": "Play again",
     "otherLevel": "Choose another level",
-    "ranking": "See leaderboard"
+    "ranking": "See leaderboard",
+    "leaderboard": {
+      "title": "Join the leaderboard",
+      "label": "Nickname",
+      "hint": "3 to 20 characters: letters, numbers, space, _, - and period.",
+      "submit": "Submit",
+      "submitting": "Submitting…",
+      "success": "Done! You are #{rank} on this level's leaderboard.",
+      "already": "This game is already on the leaderboard.",
+      "view": "See my position",
+      "errors": {
+        "length": "Your nickname must be 3 to 20 characters long.",
+        "chars": "Use only unaccented letters, numbers, space, _, - and period.",
+        "profanity": "Please choose another nickname.",
+        "rateLimited": "Too many submissions in a row. Try again in a few minutes.",
+        "generic": "Could not submit. Please try again."
+      }
+    }
+  },
+  "Ranking": {
+    "title": "Leaderboard",
+    "subtitle": "Top 50 per level. Ties go to the faster game, then to whoever submitted first.",
+    "levelsLabel": "Level",
+    "periodLabel": "Period",
+    "periods": {
+      "all": "All time",
+      "7d": "Last 7 days"
+    },
+    "caption": "{level} leaderboard · {period}",
+    "rank": "Rank",
+    "nickname": "Nickname",
+    "score": "Score",
+    "correct": "Correct",
+    "time": "Time",
+    "date": "Date",
+    "you": "you",
+    "yourPosition": "Your position",
+    "notInPeriod": "Your game does not appear for this level and period.",
+    "empty": "No one has joined this level's leaderboard yet. Want to be the first?",
+    "play": "Play this level"
   }
 }

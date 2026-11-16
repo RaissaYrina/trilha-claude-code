@@ -116,6 +116,45 @@
     "questionPoints": "{points} pts",
     "playAgain": "Jogar de novo",
     "otherLevel": "Escolher outro nível",
-    "ranking": "Ver ranking"
+    "ranking": "Ver ranking",
+    "leaderboard": {
+      "title": "Registrar no ranking",
+      "label": "Apelido",
+      "hint": "De 3 a 20 caracteres: letras sem acento, números, espaço, _, - e ponto.",
+      "submit": "Registrar",
+      "submitting": "Registrando…",
+      "success": "Pronto! Você está em #{rank} no ranking do nível.",
+      "already": "Esta partida já está no ranking.",
+      "view": "Ver minha posição",
+      "errors": {
+        "length": "O apelido precisa ter de 3 a 20 caracteres.",
+        "chars": "Use só letras sem acento, números, espaço, _, - e ponto.",
+        "profanity": "Escolha outro apelido.",
+        "rateLimited": "Muitos registros seguidos. Tente de novo em alguns minutos.",
+        "generic": "Não foi possível registrar. Tente novamente."
+      }
+    }
+  },
+  "Ranking": {
+    "title": "Ranking",
+    "subtitle": "Top 50 por nível. Em caso de empate, vence quem fez em menos tempo e, depois, quem registrou primeiro.",
+    "levelsLabel": "Nível",
+    "periodLabel": "Período",
+    "periods": {
+      "all": "Sempre",
+      "7d": "Últimos 7 dias"
+    },
+    "caption": "Ranking do nível {level} · {period}",
+    "rank": "Posição",
+    "nickname": "Apelido",
+    "score": "Pontuação",
+    "correct": "Acertos",
+    "time": "Tempo",
+    "date": "Data",
+    "you": "você",
+    "yourPosition": "Sua posição",
+    "notInPeriod": "Sua partida não aparece neste nível e período.",
+    "empty": "Ninguém entrou no ranking deste nível ainda. Que tal ser a primeira pessoa?",
+    "play": "Jogar este nível"
   }
 }

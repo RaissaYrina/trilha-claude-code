@@ -29,7 +29,7 @@ pnpm build && pnpm test:e2e   # Playwright + axe contra o build
 
 ## Decisões técnicas
 
-- **Next.js 16 com `cacheComponents` desligado.** O scaffold do Next 16 liga Cache Components por padrão. Com ele, `revalidate` vira `cacheLife`, `params` e `cookies()` precisam ficar dentro de `<Suspense>`, e a integração com o next-intl fica mais frágil. Para o PRD, o modelo clássico basta: home e `/play` continuam estáticas via `generateStaticParams`, e o ranking usa `revalidate = 30`.
+- **Next.js 16 com `cacheComponents` desligado.** O scaffold do Next 16 liga Cache Components por padrão. Com ele, `revalidate` vira `cacheLife`, `params` e `cookies()` precisam ficar dentro de `<Suspense>`, e a integração com o next-intl fica mais frágil. Para o PRD, o modelo clássico basta: home e `/play` continuam estáticas via `generateStaticParams`.
 - **`proxy.ts` no lugar de `middleware.ts`.** É o novo nome da convenção no Next 16. Ele roda o middleware do next-intl para detectar o idioma (cookie `NEXT_LOCALE`, depois `Accept-Language`).
 - **Concorrência na resposta com update otimista**, sem RPC: `update ... where current_index = $posição`. Assim a fórmula de pontuação vive só em TypeScript (`lib/scoring.ts`), sem duplicação em SQL.
 - **Cenário de dados medido por um campo explícito.** Cada pergunta tem `dataScenario: boolean`, e um teste exige ≥ 70% por nível.
@@ -45,3 +45,8 @@ pnpm build && pnpm test:e2e   # Playwright + axe contra o build
 - **Última atividade = `current_served_at`.** Ele é gravado na criação e a cada resposta, quando a próxima pergunta é entregue, então já equivale a max(`created_at`, último `answered_at`) sem uma consulta extra.
 - **`cn` do shadcn** no lugar de `clsx` + `tailwind-merge`. É o utilitário que o shadcn instala hoje, e exige Node ≥ 22.
 - **Scripts de build negados no pnpm** (`pnpm-workspace.yaml`) para `@parcel/watcher` e `@swc/core`. Eles servem só ao extrator de mensagens do next-intl, que o projeto não usa.
+- **Cache do ranking na CDN, não no Next.** `GET /api/leaderboard` depende da query (nível, período, limit), e o `revalidate` de rota ignora a query. Por isso a resposta sai com `Cache-Control: public, s-maxage=30, stale-while-revalidate=30`, e a Vercel guarda uma cópia por URL. A página `/ranking` é dinâmica, porque lê a query e destaca o jogador (`?me=<shareId>`), e consulta o banco direto, sem passar pela API.
+- **Rate limit em janela fixa com upsert atômico.** A RPC `rate_limit_hit` faz `insert ... on conflict do update set count = count + 1 returning count`, então requisições simultâneas não se perdem. A chave é `<escopo>:<hash do IP>:<início da janela>`, e cada chamada apaga as janelas vencidas. Passar do limite devolve `429 RATE_LIMITED` com `Retry-After`.
+- **Posição no ranking calculada no Postgres** (RPC `leaderboard_position`), com o mesmo desempate do índice (score desc, tempo asc, data asc). Ela serve tanto ao `POST .../leaderboard` quanto ao destaque fora do top 50.
+- **O placar do ranking vem da sessão no banco.** O cliente manda só o apelido. O unique em `leaderboard_entries.session_id` é o que impede o segundo registro, inclusive em requisições simultâneas.
+- **Filtro de palavrões em duas listas.** Palavras inequívocas são barradas em qualquer posição ("xporrax"). As que aparecem dentro de palavras comuns ("puta" em "disputa", "cu" em "cursor") só são barradas como palavra inteira. Antes da comparação, dígitos viram letras (`sh1t`) e os separadores são removidos (`p.u.t.a`).

@@ -59,13 +59,18 @@ export async function listTop(
   return data as EntryRow[];
 }
 
-/** Entrada da sessão `shareId` e sua posição no período, ou null. */
+/** Entrada da sessão `shareId` e sua posição no nível e período, ou null. */
 export async function findPosition(
   shareId: string,
+  level: Level,
   since: string | null,
 ): Promise<(EntryRow & { rank: number }) | null> {
   const { data, error } = await getSupabase()
-    .rpc("leaderboard_position", { p_share_id: shareId, p_since: since })
+    .rpc("leaderboard_position", {
+      p_share_id: shareId,
+      p_level: level,
+      p_since: since,
+    })
     .maybeSingle();
   if (error) throw error;
   if (!data) return null;

@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/routing";
+import type { SubmittedEntry } from "@/lib/leaderboard";
 import type { Level } from "@/lib/levels";
 import type {
   AnswerResponse,
@@ -53,5 +54,12 @@ export function submitAnswer(
   return request<AnswerResponse>(`/api/sessions/${id}/answer`, {
     method: "POST",
     body: JSON.stringify({ index, answer, locale }),
+  });
+}
+
+export function submitToLeaderboard(id: string, nickname: string) {
+  return request<SubmittedEntry>(`/api/sessions/${id}/leaderboard`, {
+    method: "POST",
+    body: JSON.stringify({ nickname }),
   });
 }

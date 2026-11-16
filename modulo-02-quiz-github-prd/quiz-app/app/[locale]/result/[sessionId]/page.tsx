@@ -2,11 +2,13 @@ import { CircleCheck, CircleX, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
+import { LeaderboardForm } from "@/components/result/LeaderboardForm";
 import { SaveBestScore } from "@/components/result/SaveBestScore";
 import { Button } from "@/components/ui/button";
 import { resolveLocale } from "@/i18n/locale";
 import { Link, redirect } from "@/i18n/navigation";
 import { uuidSchema } from "@/lib/api";
+import { hasEntry } from "@/lib/db/leaderboard";
 import { findSession, listAnswers } from "@/lib/db/sessions";
 import { toCompletedState } from "@/lib/session";
 import { cn } from "@/lib/utils";
@@ -35,7 +37,11 @@ export default async function ResultPage({
     redirect({ href: `/play/${row.level}`, locale });
   }
 
-  const result = toCompletedState(row, await listAnswers(row.id), locale);
+  const [answers, submitted] = await Promise.all([
+    listAnswers(row.id),
+    hasEntry(row.id),
+  ]);
+  const result = toCompletedState(row, answers, locale);
   const t = await getTranslations({ locale });
   const format = await getFormatter({ locale });
   const totalSeconds = Math.round(result.totalTimeMs / 1000);
@@ -90,6 +96,13 @@ export default async function ResultPage({
           </div>
         ))}
       </dl>
+
+      <LeaderboardForm
+        sessionId={row.id}
+        shareId={result.shareId}
+        level={result.level}
+        submitted={submitted}
+      />
 
       <div className="flex flex-col gap-3 sm:flex-row">
         <Button asChild className="h-12 px-6 text-base">
