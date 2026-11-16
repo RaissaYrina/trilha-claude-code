@@ -1,8 +1,52 @@
 # Claude Code Quiz para Profissionais de Dados
 
-Quiz de Verdadeiro ou Falso sobre o Claude Code em cenários de dados (SQL, dbt, notebooks, pipelines), para engenheiros(as), analistas e cientistas de dados. A especificação está em [`../prd.md`](../prd.md).
+Quiz de Verdadeiro ou Falso sobre o **Claude Code** em cenários reais de dados (SQL, dbt, notebooks, pipelines, warehouses), feito para engenheiros(as), analistas e cientistas de dados. São 3 níveis e partidas de 15 afirmações sorteadas, com explicação e link para a documentação oficial depois de cada resposta, além de ranking global e resultado compartilhável.
 
-> Em construção. Este README ganha screenshots, arquitetura e demo no milestone M6.
+A especificação completa está em [`../prd.md`](../prd.md).
+
+![Home no tema escuro](docs/screenshots/home-dark.png)
+
+| Escolha de nível (tema claro)                        | Mobile (EN)                                         |
+| ---------------------------------------------------- | --------------------------------------------------- |
+| ![Escolha de nível](docs/screenshots/play-light.png) | ![Home no mobile](docs/screenshots/home-mobile.png) |
+
+## O que ele faz
+
+- **3 níveis × 30 perguntas**, validadas contra a doc vigente do Claude Code. Cada partida sorteia 15 sem repetição (Fisher-Yates com RNG criptográfico), com 5 a 10 respostas "Verdadeiro".
+- **Pontuação no servidor**: base por nível, bônus por rapidez e multiplicador de sequência de acertos. O tempo é medido pelo relógio do servidor, e recarregar a página não zera o cronômetro.
+- **O gabarito nunca vai para o cliente antes da resposta.** A pergunta chega sem o campo `answer`; a resposta certa, a explicação e o link só vêm depois do `POST` da resposta.
+- **Ranking global** por nível, com apelido validado, filtro de palavrões PT/EN, rate limit por IP e destaque da posição do jogador mesmo fora do top 50.
+- **Resultado compartilhável** em `/r/<id>`, com OG image dinâmica no estilo terminal e botões de LinkedIn, X, WhatsApp, copiar link e Web Share API.
+- **PT-BR e EN**, tema claro/escuro sem flash, navegação 100% por teclado (`V`/`F`, setas + Enter) e zero violações sérias de axe.
+
+## Arquitetura
+
+```
+Navegador (Client Components)
+   │  fetch JSON
+   ▼
+Route Handlers /api/*  ──── lê content/questions/*.json (bundle do servidor)
+   │  supabase-js com a chave service_role (server-only)
+   ▼
+Supabase Postgres: quiz_sessions · session_answers · leaderboard_entries · rate_limits
+                   view question_stats · RPCs rate_limit_hit e leaderboard_position
+```
+
+O servidor é a fonte da verdade: sorteio, tempo, pontuação, posição no ranking e rate limit são calculados lá. O banco fica fechado (RLS sem policies e `revoke` de `anon`/`authenticated`), e só os Route Handlers falam com ele.
+
+| Caminho                            | Papel                                                                     |
+| ---------------------------------- | ------------------------------------------------------------------------- |
+| `lib/scoring.ts`                   | Fórmula de pontuação, função pura com 100% de cobertura                   |
+| `lib/session.ts`                   | Regras da partida (aplicar resposta, expiração, resumo), sem banco        |
+| `lib/questions/`                   | Schema Zod, loader e sorteio das perguntas                                |
+| `lib/db/`                          | Único ponto de acesso ao Postgres                                         |
+| `lib/rate-limit.ts`, `nickname.ts` | Janela fixa por IP e validação do apelido (cliente e servidor)            |
+| `app/api/`                         | Sessões, respostas, ranking e OG image                                    |
+| `app/[locale]/`                    | Home, níveis, partida, resultado, ranking e página pública `/r/[shareId]` |
+
+## Stack
+
+Next.js 16 (App Router) · TypeScript strict · Tailwind + shadcn/ui · next-intl · next-themes · Zod · Supabase Postgres · `next/og` · Vercel Analytics + Speed Insights · Vitest + Testing Library · Playwright + axe · GitHub Actions · Vercel.
 
 ## Como rodar localmente
 
@@ -17,15 +61,18 @@ pnpm dev          # http://localhost:3000
 
 Banco: `pnpm db:migrate` aplica migrations novas, `pnpm db:reset` recria o banco do zero e `pnpm db:stop` desliga o stack.
 
-Checagens:
+## Testes e CI
 
 ```bash
 pnpm lint
 pnpm typecheck
-pnpm test         # Vitest com cobertura
+pnpm test               # Vitest: unidade, componentes e Route Handlers (banco em memória), com cobertura
 pnpm test:integration   # lib/db contra o Supabase local (pnpm db:start)
-pnpm build && pnpm test:e2e   # Playwright + axe contra o build
+pnpm build && pnpm test:e2e              # Playwright + axe: páginas que não precisam do banco
+pnpm build && E2E_DB=1 pnpm test:e2e     # inclui partida, ranking e compartilhamento (Supabase local no ar)
 ```
+
+Em todo PR, o GitHub Actions roda install → lint → typecheck → test → Supabase local → integração → build → E2E completo, em desktop e em mobile de 320px. Um workflow semanal roda `pnpm check:links` para conferir se todo `docUrl` ainda responde 200.
 
 ## Decisões técnicas
 
@@ -55,3 +102,6 @@ pnpm build && pnpm test:e2e   # Playwright + axe contra o build
 - **Web Share API além dos links, não no lugar deles.** Quando o navegador tem `navigator.share` (em geral no mobile), aparece um botão "Compartilhar…" extra; LinkedIn, X, WhatsApp e copiar link ficam sempre visíveis.
 - **`quiz_completed` disparado na tela de resultado**, que já tem placar e acertos, com trava no `sessionStorage` para recarregar a página não contar a partida duas vezes. `quiz_started` só conta partidas novas, não retomadas.
 - **Taxa de acerto por pergunta na view `question_stats`** (criada na migration inicial). Para consultar: `select * from question_stats order by accuracy;` no SQL Editor do Supabase ou via `psql`.
+- **CSP sem nonce.** Nonce exige renderização dinâmica em todas as páginas, e home e `/play` precisam ser estáticas (meta de performance). A política fica no `next.config.ts` com `script-src 'self' 'unsafe-inline'`, além de `frame-ancestors 'none'`, `X-Frame-Options: DENY`, `nosniff`, `Referrer-Policy` e `Permissions-Policy`. O Vercel Analytics roda na mesma origem (`/_vercel/*`), então não precisa de domínio extra fora do modo dev.
+- **`hreflang` e canonical por página** (`lib/seo.ts`), com `x-default` em PT. O sitemap lista só home, `/play` e `/ranking` nos dois idiomas; partida, resultado e `/r` são `noindex`.
+- **E2E com banco ligado por `E2E_DB=1`.** Os testes de partida, ranking e compartilhamento precisam do Supabase. No CI ele sobe com `supabase start` no Docker do runner; localmente, sem a variável, esses testes são pulados e o resto roda. Cada teste usa um `X-Forwarded-For` próprio para o rate limit de sessões não misturar os casos, e o gabarito vem dos próprios JSONs de perguntas, pelo id que a API entrega.
