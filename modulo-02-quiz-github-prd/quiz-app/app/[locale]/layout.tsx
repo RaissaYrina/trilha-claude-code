@@ -9,6 +9,7 @@ import { Header } from "@/components/layout/Header";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { resolveLocale } from "@/i18n/locale";
 import { routing } from "@/i18n/routing";
+import { LANGUAGE_TAGS, OG_LOCALES } from "@/lib/seo";
 import { siteUrl } from "@/lib/share";
 import "../globals.css";
 
@@ -37,6 +38,15 @@ export async function generateMetadata({
     metadataBase: new URL(siteUrl()),
     title: { default: t("title"), template: `%s · ${t("title")}` },
     description: t("description"),
+    openGraph: {
+      type: "website",
+      siteName: t("title"),
+      locale: OG_LOCALES[locale],
+      alternateLocale: routing.locales
+        .filter((l) => l !== locale)
+        .map((l) => OG_LOCALES[l]),
+    },
+    twitter: { card: "summary" },
   };
 }
 
@@ -48,7 +58,7 @@ export default async function LocaleLayout({
 
   return (
     <html
-      lang={locale === "pt" ? "pt-BR" : "en"}
+      lang={LANGUAGE_TAGS[locale]}
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >

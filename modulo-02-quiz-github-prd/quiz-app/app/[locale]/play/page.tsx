@@ -13,13 +13,18 @@ import {
 import { resolveLocale } from "@/i18n/locale";
 import { Link } from "@/i18n/navigation";
 import { LEVELS, QUESTIONS_PER_SESSION } from "@/lib/levels";
+import { localeAlternates } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/play">): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: "Play" });
-  return { title: t("title") };
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: localeAlternates(locale, "/play"),
+  };
 }
 
 export default async function PlayPage({

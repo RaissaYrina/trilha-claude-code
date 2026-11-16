@@ -1,8 +1,17 @@
 import { ChartColumn, Database, FlaskConical } from "lucide-react";
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import { resolveLocale } from "@/i18n/locale";
 import { Link } from "@/i18n/navigation";
+import { localeAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/[locale]">): Promise<Metadata> {
+  const locale = await resolveLocale(params);
+  return { alternates: localeAlternates(locale, "") };
+}
 
 const ROLES = [
   { key: "engineering", Icon: Database },

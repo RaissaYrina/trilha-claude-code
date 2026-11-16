@@ -15,6 +15,7 @@ import {
   type Period,
 } from "@/lib/leaderboard";
 import { isLevel, LEVELS, type Level } from "@/lib/levels";
+import { localeAlternates } from "@/lib/seo";
 import { SHARE_ID } from "@/lib/share";
 import { cn } from "@/lib/utils";
 
@@ -30,7 +31,11 @@ export async function generateMetadata({
 }: PageProps<"/[locale]/ranking">): Promise<Metadata> {
   const locale = await resolveLocale(params);
   const t = await getTranslations({ locale, namespace: "Ranking" });
-  return { title: t("title"), description: t("subtitle") };
+  return {
+    title: t("title"),
+    description: t("subtitle"),
+    alternates: localeAlternates(locale, "/ranking"),
+  };
 }
 
 export default async function RankingPage({
