@@ -78,7 +78,7 @@ export function QuestionCard({
         <span className="size-2.5 rounded-full bg-red-400" aria-hidden />
         <span className="size-2.5 rounded-full bg-yellow-400" aria-hidden />
         <span className="size-2.5 rounded-full bg-green-400" aria-hidden />
-        <span className="text-muted-foreground ml-2 font-mono text-xs">
+        <span className="text-foreground ml-2 font-mono text-xs">
           {t("progress", { current: question.index + 1, total })}
         </span>
       </div>
