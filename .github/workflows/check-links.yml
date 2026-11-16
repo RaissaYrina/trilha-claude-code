@@ -1,0 +1,31 @@
+name: Links da documentação (quiz-app)
+
+# Semanal e não bloqueia PRs: a doc do Claude Code muda de lugar de vez em quando.
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: modulo-02-quiz-github-prd/quiz-app
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: modulo-02-quiz-github-prd/quiz-app/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: modulo-02-quiz-github-prd/quiz-app/pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm check:links

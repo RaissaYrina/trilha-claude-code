@@ -30,10 +30,11 @@ A especificação completa está em `../prd.md` (pasta do módulo), que é a fon
 | `pnpm test`                              | Vitest (unit, componentes, API), com cobertura                                |
 | `pnpm test tests/unit/scoring.test.ts`   | Um único arquivo (sem `--`: o pnpm 12 repassaria o `--` e rodaria tudo)       |
 | `pnpm test:e2e`                          | Playwright + `@axe-core/playwright` contra o build                            |
+| `E2E_DB=1 pnpm test:e2e`                 | Inclui partida, ranking e compartilhamento (precisa do Supabase local)        |
 | `pnpm check:links`                       | Verifica se todo `docUrl` responde 200. Roda no CI semanal e não bloqueia PRs |
 | `pnpm db:migrate`                        | Aplica `supabase/migrations/` (Supabase CLI)                                  |
 
-Pipeline de CI em todo PR: install → lint → typecheck → test → build → E2E.
+Pipeline de CI em todo PR: install → lint → typecheck → test → Supabase local → integração → build → E2E completo.
 
 ## Stack
 
