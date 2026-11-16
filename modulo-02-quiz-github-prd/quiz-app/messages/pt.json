@@ -1,0 +1,179 @@
+{
+  "Metadata": {
+    "title": "Claude Code Quiz para Dados",
+    "description": "Quiz de Verdadeiro ou Falso sobre o Claude Code para engenheiros, analistas e cientistas de dados."
+  },
+  "Header": {
+    "skipToContent": "Pular para o conteúdo",
+    "ranking": "Ranking",
+    "switchLocale": "Mudar idioma para inglês",
+    "toggleTheme": "Alternar tema claro/escuro"
+  },
+  "Footer": {
+    "source": "Código no GitHub",
+    "credit": "Feito por {author}",
+    "disclaimer": "Projeto independente, sem afiliação oficial com a Anthropic."
+  },
+  "Home": {
+    "eyebrow": "$ claude --quiz dados",
+    "title": "Claude Code Quiz para Profissionais de Dados",
+    "subtitle": "Teste o que você sabe sobre o Claude Code em cenários reais de dados: SQL, dbt, notebooks, pipelines e warehouses. 15 afirmações de Verdadeiro ou Falso, com explicação e link para a documentação depois de cada resposta.",
+    "whatIs": "O Claude Code é a ferramenta agêntica de programação da Anthropic: ele lê o seu repositório, edita arquivos e executa comandos a partir de instruções em linguagem natural.",
+    "start": "Começar",
+    "ranking": "Ver ranking",
+    "audienceTitle": "Feito para",
+    "roles": {
+      "engineering": "Engenharia de Dados",
+      "analytics": "Análise de Dados",
+      "science": "Ciência de Dados"
+    }
+  },
+  "Play": {
+    "title": "Escolha o nível",
+    "subtitle": "Cada partida sorteia 15 perguntas do nível. Responda rápido para ganhar bônus e mantenha a sequência de acertos.",
+    "questionCount": "{count} perguntas",
+    "bestScore": "Sua melhor pontuação: {score}",
+    "noBestScore": "Você ainda não jogou este nível.",
+    "start": "Jogar",
+    "startLevel": "Jogar o nível {level}",
+    "levels": {
+      "beginner": {
+        "name": "Iniciante",
+        "audience": "Lideranças de dados e analistas começando",
+        "description": "O que é o Claude Code e onde ele roda, casos de uso em dados (SQL, documentação de métricas, análises recorrentes) e cuidados com dados sensíveis."
+      },
+      "intermediate": {
+        "name": "Intermediário",
+        "audience": "Analistas, cientistas e engenheiros no dia a dia",
+        "description": "CLAUDE.md para projetos de dados, /init, notebooks Jupyter, testes, plan mode, modos de permissão, gestão de contexto e comandos personalizados."
+      },
+      "advanced": {
+        "name": "Avançado",
+        "audience": "Engenheiros de dados e power users",
+        "description": "MCP com bancos e warehouses, hooks, regras de permissão, subagents, skills, modo não interativo em CI e orquestradores, GitHub Actions e Agent SDK."
+      }
+    }
+  },
+  "Quiz": {
+    "title": "Partida · {level}",
+    "loading": "Preparando sua partida…",
+    "progress": "Pergunta {current} de {total}",
+    "score": "Pontos",
+    "streak": "Sequência",
+    "streakLabel": "{count, plural, one {# acerto seguido} other {# acertos seguidos}}",
+    "timer": "Tempo",
+    "statement": "Afirmação {current} de {total}",
+    "answerTrue": "Verdadeiro",
+    "answerFalse": "Falso",
+    "shortcuts": "Atalhos: V para Verdadeiro, F para Falso, setas para trocar e Enter para confirmar.",
+    "correct": "Correto!",
+    "incorrect": "Incorreto",
+    "answerWas": "A afirmação é {answer, select, true {verdadeira} other {falsa}}.",
+    "points": "+{points} pontos",
+    "bonus": "inclui {bonus} de bônus de tempo",
+    "docLink": "Ler na documentação",
+    "newTab": "(abre em nova aba)",
+    "next": "Próxima pergunta",
+    "seeResult": "Ver resultado",
+    "errorTitle": "Algo deu errado",
+    "errorNetwork": "Não foi possível falar com o servidor. Verifique sua conexão.",
+    "errorExpired": "Sua partida expirou depois de 60 minutos sem atividade.",
+    "retry": "Tentar novamente",
+    "newGame": "Começar nova partida"
+  },
+  "Result": {
+    "title": "Resultado",
+    "heading": "Partida concluída · {level}",
+    "score": "Pontuação",
+    "scoreOf": "de {max} possíveis",
+    "correct": "Acertos",
+    "correctOf": "{correct} de {total}",
+    "time": "Tempo total",
+    "duration": "{minutes, plural, =0 {} other {# min }}{seconds} s",
+    "maxStreak": "Maior sequência",
+    "newBest": "Nova melhor pontuação neste nível!",
+    "bands": {
+      "explorer": {
+        "name": "Explorador(a)",
+        "description": "Você está começando a conhecer o Claude Code. A revisão abaixo é um bom ponto de partida."
+      },
+      "practitioner": {
+        "name": "Praticante",
+        "description": "Você já usa o básico. Vale aprofundar nos pontos que errou."
+      },
+      "specialist": {
+        "name": "Especialista",
+        "description": "Você conhece bem o Claude Code no dia a dia com dados."
+      },
+      "master": {
+        "name": "Mestre do Claude Code para Dados",
+        "description": "Domínio quase total. Que tal tentar o próximo nível?"
+      }
+    },
+    "reviewTitle": "Revisão das perguntas",
+    "yourAnswer": "Sua resposta: {answer, select, true {Verdadeiro} other {Falso}}",
+    "correctAnswer": "Resposta certa: {answer, select, true {Verdadeiro} other {Falso}}",
+    "questionPoints": "{points} pts",
+    "playAgain": "Jogar de novo",
+    "otherLevel": "Escolher outro nível",
+    "ranking": "Ver ranking",
+    "leaderboard": {
+      "title": "Registrar no ranking",
+      "label": "Apelido",
+      "hint": "De 3 a 20 caracteres: letras sem acento, números, espaço, _, - e ponto.",
+      "submit": "Registrar",
+      "submitting": "Registrando…",
+      "success": "Pronto! Você está em #{rank} no ranking do nível.",
+      "already": "Esta partida já está no ranking.",
+      "view": "Ver minha posição",
+      "errors": {
+        "length": "O apelido precisa ter de 3 a 20 caracteres.",
+        "chars": "Use só letras sem acento, números, espaço, _, - e ponto.",
+        "profanity": "Escolha outro apelido.",
+        "rateLimited": "Muitos registros seguidos. Tente de novo em alguns minutos.",
+        "generic": "Não foi possível registrar. Tente novamente."
+      }
+    }
+  },
+  "Ranking": {
+    "title": "Ranking",
+    "subtitle": "Top 50 por nível. Em caso de empate, vence quem fez em menos tempo e, depois, quem registrou primeiro.",
+    "levelsLabel": "Nível",
+    "periodLabel": "Período",
+    "periods": {
+      "all": "Sempre",
+      "7d": "Últimos 7 dias"
+    },
+    "caption": "Ranking do nível {level} · {period}",
+    "rank": "Posição",
+    "nickname": "Apelido",
+    "score": "Pontuação",
+    "correct": "Acertos",
+    "time": "Tempo",
+    "date": "Data",
+    "you": "você",
+    "yourPosition": "Sua posição",
+    "notInPeriod": "Sua partida não aparece neste nível e período.",
+    "empty": "Ninguém entrou no ranking deste nível ainda. Que tal ser a primeira pessoa?",
+    "play": "Jogar este nível"
+  },
+  "Share": {
+    "title": "Resultado de {name}",
+    "anonymous": "Anônimo",
+    "heading": "{name} jogou o nível {level}",
+    "description": "{score} pontos e {correct} de {total} acertos no nível {level} do Claude Code Quiz para Dados.",
+    "text": "Fiz {score} pontos no nível {level} do Claude Code Quiz para Dados! Engenheiros, analistas e cientistas de dados: será que vocês me superam?",
+    "ogAlt": "Resultado de {name}: {score} pontos no nível {level}",
+    "points": "pontos",
+    "correct": "acertos",
+    "cta": "Jogar também",
+    "sectionTitle": "Compartilhar resultado",
+    "native": "Compartilhar…",
+    "linkedin": "LinkedIn",
+    "x": "X (Twitter)",
+    "whatsapp": "WhatsApp",
+    "copy": "Copiar link",
+    "copied": "Link copiado!",
+    "copyFailed": "Não foi possível copiar. O link é: {url}"
+  }
+}

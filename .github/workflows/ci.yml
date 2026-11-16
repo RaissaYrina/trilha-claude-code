@@ -1,0 +1,67 @@
+name: CI quiz-app
+
+on:
+  pull_request:
+    paths:
+      - "modulo-02-quiz-github-prd/quiz-app/**"
+      - ".github/workflows/ci.yml"
+  push:
+    branches: [main]
+    paths:
+      - "modulo-02-quiz-github-prd/quiz-app/**"
+      - ".github/workflows/ci.yml"
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: modulo-02-quiz-github-prd/quiz-app
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: modulo-02-quiz-github-prd/quiz-app/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: modulo-02-quiz-github-prd/quiz-app/pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+
+      # Supabase local (Docker do runner) para integração e E2E completos.
+      - run: pnpm db:start
+      - name: Variáveis do Supabase local
+        run: |
+          eval "$(pnpm exec supabase status -o env)"
+          {
+            echo "SUPABASE_URL=$API_URL"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$SERVICE_ROLE_KEY"
+            echo "IP_HASH_SALT=ci-salt"
+            echo "E2E_DB=1"
+          } >> "$GITHUB_ENV"
+      - run: pnpm test:integration
+
+      - run: pnpm build
+
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: modulo-02-quiz-github-prd/quiz-app/playwright-report
+          retention-days: 7

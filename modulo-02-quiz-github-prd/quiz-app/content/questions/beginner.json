@@ -1,0 +1,512 @@
+[
+  {
+    "id": "beg-001",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O Claude Code pode escrever uma consulta SQL a partir de uma descrição em linguagem natural e explicar o que ela faz.",
+      "en": "Claude Code can write a SQL query from a plain-language description and explain what it does."
+    },
+    "explanation": {
+      "pt": "Você descreve o que quer em linguagem natural e o Claude Code escreve o código, inclusive SQL, e explica o resultado. Ele também lê os arquivos do projeto para usar os nomes de tabelas e colunas que já existem.",
+      "en": "You describe what you want in plain language and Claude Code writes the code, SQL included, and explains it. It also reads your project files, so it can reuse the table and column names that already exist."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-002",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O Claude Code só funciona com projetos em JavaScript, então não serve para scripts Python ou arquivos SQL.",
+      "en": "Claude Code only works with JavaScript projects, so it is no use for Python scripts or SQL files."
+    },
+    "explanation": {
+      "pt": "O Claude Code lê, edita e executa o código que está no seu projeto, seja qual for a linguagem. Python, SQL, notebooks e arquivos de configuração entram normalmente.",
+      "en": "Claude Code reads, edits and runs the code in your project, whatever the language. Python, SQL, notebooks and config files are all fair game."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-003",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": false,
+    "answer": false,
+    "statement": {
+      "pt": "O Claude Code e o Claude, o modelo de IA, são exatamente a mesma coisa.",
+      "en": "Claude Code and Claude, the AI model, are exactly the same thing."
+    },
+    "explanation": {
+      "pt": "O Claude Code é uma ferramenta agêntica: ele usa os modelos Claude para ler o projeto, editar arquivos e executar comandos no seu ambiente. O modelo é o \"cérebro\"; o Claude Code é a ferramenta que age.",
+      "en": "Claude Code is an agentic tool: it uses Claude models to read your project, edit files and run commands in your environment. The model is the \"brain\"; Claude Code is the tool that takes action."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-004",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Para usar o Claude Code num projeto de pipelines de dados, é preciso antes enviar o código para uma plataforma da Anthropic.",
+      "en": "To use Claude Code on a data pipeline project, you first have to upload the code to an Anthropic platform."
+    },
+    "explanation": {
+      "pt": "Basta abrir o terminal na pasta do projeto e rodar `claude`. Ele trabalha direto nos arquivos que já estão no seu computador, sem migração.",
+      "en": "Just open a terminal in the project folder and run `claude`. It works directly on the files already on your machine, with no migration."
+    },
+    "docUrl": "https://code.claude.com/docs/en/quickstart"
+  },
+  {
+    "id": "beg-005",
+    "level": "beginner",
+    "topic": "ambientes",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": false,
+    "answer": false,
+    "statement": {
+      "pt": "O Claude Code só funciona dentro do VS Code.",
+      "en": "Claude Code only works inside VS Code."
+    },
+    "explanation": {
+      "pt": "Ele roda no terminal, no VS Code, nas IDEs JetBrains, no app desktop e no navegador. Todas essas superfícies usam o mesmo motor do Claude Code.",
+      "en": "It runs in the terminal, VS Code, JetBrains IDEs, the desktop app and the browser. All of these surfaces share the same Claude Code engine."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-006",
+    "level": "beginner",
+    "topic": "fluxos",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O Claude Code pode ler um repositório de pipelines de dados e explicar, em linguagem simples, o que cada etapa faz.",
+      "en": "Claude Code can read a data pipeline repository and explain, in plain language, what each step does."
+    },
+    "explanation": {
+      "pt": "Entender uma base de código nova é um dos fluxos de trabalho documentados: você pede uma visão geral e depois aprofunda em partes específicas. Ajuda muito com pipelines herdados ou pouco documentados.",
+      "en": "Understanding a new codebase is one of the documented workflows: you ask for an overview and then drill into specific parts. It helps a lot with legacy or poorly documented pipelines."
+    },
+    "docUrl": "https://code.claude.com/docs/en/common-workflows"
+  },
+  {
+    "id": "beg-007",
+    "level": "beginner",
+    "topic": "notebooks",
+    "roles": ["scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O Claude Code consegue ler um notebook Jupyter (.ipynb), incluindo as saídas das células, como tabelas e gráficos.",
+      "en": "Claude Code can read a Jupyter notebook (.ipynb), including cell outputs such as tables and charts."
+    },
+    "explanation": {
+      "pt": "A ferramenta de leitura devolve as células do notebook com suas saídas, incluindo código, markdown e visualizações. Assim ele entende tanto o código quanto o que ele produziu.",
+      "en": "The Read tool returns notebook cells with their outputs, including code, markdown and visualizations. That way it sees both the code and what it produced."
+    },
+    "docUrl": "https://code.claude.com/docs/en/tools-reference"
+  },
+  {
+    "id": "beg-008",
+    "level": "beginner",
+    "topic": "fluxos",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Você pode colar a imagem de um gráfico de dashboard no Claude Code e pedir ajuda para reproduzi-lo em código.",
+      "en": "You can paste an image of a dashboard chart into Claude Code and ask for help recreating it in code."
+    },
+    "explanation": {
+      "pt": "O Claude Code aceita imagens: dá para arrastar e soltar, colar com Ctrl+V (Alt+V no Windows) ou informar o caminho do arquivo. Prints de gráficos, telas e diagramas viram contexto para a tarefa.",
+      "en": "Claude Code accepts images: drag and drop, paste with Ctrl+V (Alt+V on Windows) or give the file path. Screenshots of charts, screens and diagrams become context for the task."
+    },
+    "docUrl": "https://code.claude.com/docs/en/common-workflows"
+  },
+  {
+    "id": "beg-009",
+    "level": "beginner",
+    "topic": "permissoes",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "No modo Manual, o Claude Code pede sua aprovação antes de executar um script que altera tabelas do banco de dados.",
+      "en": "In Manual mode, Claude Code asks for your approval before running a script that changes database tables."
+    },
+    "explanation": {
+      "pt": "No modo Manual, comandos de terminal precisam de aprovação, exceto um pequeno conjunto de comandos só de leitura. Você decide se aprova uma vez ou se libera aquele comando dali em diante.",
+      "en": "In Manual mode, terminal commands need approval, except for a small built-in set of read-only commands. You choose whether to approve once or allow that command from then on."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "beg-010",
+    "level": "beginner",
+    "topic": "permissoes",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "No modo Manual, o Claude Code pede aprovação até para ler os arquivos do projeto, como um modelo SQL.",
+      "en": "In Manual mode, Claude Code asks for approval even to read project files, such as a SQL model."
+    },
+    "explanation": {
+      "pt": "Ler arquivos dentro da pasta de trabalho não pede aprovação. O que pede aprovação no modo Manual são ações que mudam algo, como editar arquivos e executar comandos.",
+      "en": "Reading files inside the working directory does not need approval. What needs approval in Manual mode are actions that change things, such as editing files and running commands."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "beg-011",
+    "level": "beginner",
+    "topic": "git",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Depois de alterar os scripts de transformação de dados, o Claude Code pode criar um commit com uma mensagem descritiva.",
+      "en": "After changing the data transformation scripts, Claude Code can create a commit with a descriptive message."
+    },
+    "explanation": {
+      "pt": "O Claude Code trabalha direto com o Git: prepara as mudanças, escreve a mensagem do commit, cria branches e abre pull requests.",
+      "en": "Claude Code works directly with git: it stages changes, writes commit messages, creates branches and opens pull requests."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-012",
+    "level": "beginner",
+    "topic": "sessoes",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Depois que o Claude Code começa uma tarefa, como limpar uma planilha de dados, não dá para interrompê-lo até ele terminar.",
+      "en": "Once Claude Code starts a task, such as cleaning a data spreadsheet, you cannot interrupt it until it finishes."
+    },
+    "explanation": {
+      "pt": "A tecla Esc interrompe o Claude Code no meio da resposta ou de uma ação, e o trabalho feito até ali é mantido. Assim você pode corrigir o rumo sem recomeçar.",
+      "en": "Pressing Esc interrupts Claude Code mid-response or mid-action, and the work done so far is kept. You can redirect it without starting over."
+    },
+    "docUrl": "https://code.claude.com/docs/en/interactive-mode"
+  },
+  {
+    "id": "beg-013",
+    "level": "beginner",
+    "topic": "checkpoints",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Se não gostar das edições que o Claude Code fez num script de limpeza de dados, você pode voltar a um ponto anterior e restaurar os arquivos.",
+      "en": "If you don't like the edits Claude Code made to a data cleaning script, you can go back to an earlier point and restore the files."
+    },
+    "explanation": {
+      "pt": "O Claude Code cria checkpoints das mudanças feitas pelas suas ferramentas de edição. Com Esc duas vezes (ou /rewind), você restaura o código, a conversa ou os dois.",
+      "en": "Claude Code checkpoints the changes made by its file editing tools. Press Esc twice (or use /rewind) to restore the code, the conversation, or both."
+    },
+    "docUrl": "https://code.claude.com/docs/en/checkpointing"
+  },
+  {
+    "id": "beg-014",
+    "level": "beginner",
+    "topic": "checkpoints",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Os checkpoints do Claude Code conseguem desfazer mudanças feitas num banco de dados remoto, como linhas apagadas de uma tabela.",
+      "en": "Claude Code checkpoints can undo changes made to a remote database, such as rows deleted from a table."
+    },
+    "explanation": {
+      "pt": "Checkpoints cobrem arquivos locais. Ações em sistemas remotos, como bancos de dados, APIs e deploys, não podem ser desfeitas por eles. Por isso vale revisar com cuidado os comandos que mexem em dados.",
+      "en": "Checkpoints cover local files. Actions on remote systems, such as databases, APIs and deployments, cannot be undone by them. That is why commands that touch data deserve a careful review."
+    },
+    "docUrl": "https://code.claude.com/docs/en/how-claude-code-works"
+  },
+  {
+    "id": "beg-015",
+    "level": "beginner",
+    "topic": "checkpoints",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Com os checkpoints do Claude Code, não é mais preciso usar Git para versionar um projeto de dados.",
+      "en": "With Claude Code checkpoints, you no longer need git to version a data project."
+    },
+    "explanation": {
+      "pt": "Checkpoints servem para recuperação rápida dentro de uma sessão e expiram com o tempo. Para histórico permanente e trabalho em equipe, a documentação recomenda continuar usando controle de versão, como o Git.",
+      "en": "Checkpoints are for quick, session-level recovery and expire over time. For permanent history and collaboration, the docs recommend you keep using version control such as git."
+    },
+    "docUrl": "https://code.claude.com/docs/en/checkpointing"
+  },
+  {
+    "id": "beg-016",
+    "level": "beginner",
+    "topic": "memoria",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": false,
+    "answer": true,
+    "statement": {
+      "pt": "Um arquivo CLAUDE.md na raiz do projeto é lido pelo Claude Code no início de cada sessão.",
+      "en": "A CLAUDE.md file at the project root is read by Claude Code at the start of every session."
+    },
+    "explanation": {
+      "pt": "O CLAUDE.md guarda instruções persistentes, em texto simples, que o Claude Code carrega ao iniciar cada sessão. É o lugar para regras e convenções que você não quer repetir toda vez.",
+      "en": "CLAUDE.md holds persistent plain-text instructions that Claude Code loads at the start of every session. It is the place for rules and conventions you don't want to repeat each time."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "beg-017",
+    "level": "beginner",
+    "topic": "memoria",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "No CLAUDE.md você pode escrever regras do time, como \"use snake_case nos nomes de tabelas\", para o Claude Code seguir.",
+      "en": "In CLAUDE.md you can write team rules, such as \"use snake_case for table names\", for Claude Code to follow."
+    },
+    "explanation": {
+      "pt": "O CLAUDE.md do projeto existe justamente para instruções compartilhadas pelo time, como convenções de nomes, comandos de build e de teste. O Claude Code trata esse conteúdo como contexto da sessão.",
+      "en": "The project CLAUDE.md exists precisely for team-shared instructions, such as naming conventions and build and test commands. Claude Code treats its content as session context."
+    },
+    "docUrl": "https://code.claude.com/docs/en/memory"
+  },
+  {
+    "id": "beg-018",
+    "level": "beginner",
+    "topic": "sessoes",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Depois de fechar o terminal, você pode retomar a conversa anterior sobre uma análise de dados em vez de começar do zero.",
+      "en": "After closing the terminal, you can resume the previous conversation about a data analysis instead of starting from scratch."
+    },
+    "explanation": {
+      "pt": "`claude --continue` retoma a conversa mais recente da pasta, e `claude --resume` (ou /resume dentro da sessão) deixa escolher uma conversa de uma lista.",
+      "en": "`claude --continue` resumes the most recent conversation in the folder, and `claude --resume` (or /resume inside a session) lets you pick one from a list."
+    },
+    "docUrl": "https://code.claude.com/docs/en/common-workflows"
+  },
+  {
+    "id": "beg-019",
+    "level": "beginner",
+    "topic": "fluxos",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Você pode pedir ao Claude Code para rodar os testes de um pipeline de dados e corrigir os que falharem.",
+      "en": "You can ask Claude Code to run a data pipeline's tests and fix the ones that fail."
+    },
+    "explanation": {
+      "pt": "O Claude Code executa comandos e verifica o resultado. Um exemplo da própria documentação é pedir para escrever testes, rodá-los e corrigir as falhas.",
+      "en": "Claude Code runs commands and checks the results. An example from the docs is asking it to write tests, run them and fix any failures."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-020",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Para o Claude Code entender um projeto de relatórios, você precisa copiar e colar cada arquivo na conversa.",
+      "en": "For Claude Code to understand a reporting project, you need to copy and paste each file into the conversation."
+    },
+    "explanation": {
+      "pt": "O Claude Code lê os arquivos do projeto conforme precisa, sem que você adicione o contexto manualmente. Basta pedir a tarefa a partir da pasta do projeto.",
+      "en": "Claude Code reads project files as it needs them, so you don't have to add context manually. Just ask for the task from the project folder."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-021",
+    "level": "beginner",
+    "topic": "sessoes",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Digitando @ no prompt, você pode citar um arquivo específico, como @vendas.sql, para mostrar ao Claude Code do que está falando.",
+      "en": "By typing @ in the prompt, you can mention a specific file, such as @sales.sql, to show Claude Code what you mean."
+    },
+    "explanation": {
+      "pt": "O @ abre o autocompletar de caminhos de arquivo. É um jeito rápido de apontar exatamente qual arquivo a tarefa envolve.",
+      "en": "Typing @ triggers file path autocomplete. It is a quick way to point at exactly which file the task is about."
+    },
+    "docUrl": "https://code.claude.com/docs/en/interactive-mode"
+  },
+  {
+    "id": "beg-022",
+    "level": "beginner",
+    "topic": "ambientes",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Dá para usar o Claude Code no navegador, sem instalar nada no computador, para trabalhar num repositório de análises.",
+      "en": "You can use Claude Code in the browser, without installing anything, to work on an analytics repository."
+    },
+    "explanation": {
+      "pt": "O Claude Code na web roda no navegador, sem configuração local, e trabalha inclusive com repositórios que você não tem na sua máquina.",
+      "en": "Claude Code on the web runs in the browser with no local setup, and it can even work on repositories you don't have on your machine."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-023",
+    "level": "beginner",
+    "topic": "ambientes",
+    "roles": ["scientist", "engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Existe uma integração do Claude Code com o PyCharm, editor muito usado em projetos de ciência de dados.",
+      "en": "There is a Claude Code integration for PyCharm, an editor widely used in data science projects."
+    },
+    "explanation": {
+      "pt": "O plugin do Claude Code para IDEs JetBrains funciona no IntelliJ IDEA, no PyCharm, no WebStorm e em outras. Ele usa a CLI do Claude Code, instalada à parte.",
+      "en": "The Claude Code plugin for JetBrains IDEs works in IntelliJ IDEA, PyCharm, WebStorm and others. It uses the Claude Code CLI, installed separately."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-024",
+    "level": "beginner",
+    "topic": "seguranca",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "No modo Manual, o Claude Code lê e altera arquivos fora da pasta do projeto, como sua pasta de planilhas pessoais, sem pedir permissão.",
+      "en": "In Manual mode, Claude Code reads and changes files outside the project folder, such as your personal spreadsheets folder, without asking."
+    },
+    "explanation": {
+      "pt": "No modo Manual, as ferramentas de arquivo pedem permissão antes de ler ou escrever fora da pasta onde o Claude Code foi iniciado. Para liberar outra pasta, você a adiciona como diretório adicional.",
+      "en": "In Manual mode, the file tools ask before reading or writing outside the folder where Claude Code was started. To allow another folder, you add it as an additional directory."
+    },
+    "docUrl": "https://code.claude.com/docs/en/security"
+  },
+  {
+    "id": "beg-025",
+    "level": "beginner",
+    "topic": "git",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Quando duas pessoas alteram o mesmo script de dados e o Git acusa conflito, o Claude Code pode ajudar a resolvê-lo.",
+      "en": "When two people change the same data script and git reports a conflict, Claude Code can help resolve it."
+    },
+    "explanation": {
+      "pt": "Resolver conflitos de merge é um dos exemplos de trabalho com Git citados na documentação, ao lado de criar commits, branches e pull requests.",
+      "en": "Resolving merge conflicts is one of the git tasks the docs mention, alongside creating commits, branches and pull requests."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-026",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": false,
+    "answer": false,
+    "statement": {
+      "pt": "Depois de instalado, o Claude Code funciona totalmente offline, sem conexão com a internet.",
+      "en": "Once installed, Claude Code works fully offline, with no internet connection."
+    },
+    "explanation": {
+      "pt": "A conexão com a internet é um dos requisitos do Claude Code: ele se comunica com os modelos Claude, que não rodam no seu computador.",
+      "en": "An internet connection is one of Claude Code's requirements: it talks to Claude models, which don't run on your computer."
+    },
+    "docUrl": "https://code.claude.com/docs/en/setup"
+  },
+  {
+    "id": "beg-027",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Para começar, você abre o terminal na pasta do projeto de dados e digita `claude`.",
+      "en": "To get started, you open a terminal in the data project folder and type `claude`."
+    },
+    "explanation": {
+      "pt": "É assim que se inicia uma sessão interativa no terminal. No primeiro uso, o Claude Code pede para você fazer login.",
+      "en": "That is how you start an interactive session in the terminal. On first use, Claude Code asks you to log in."
+    },
+    "docUrl": "https://code.claude.com/docs/en/quickstart"
+  },
+  {
+    "id": "beg-028",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O Claude Code mostra o código, mas não consegue executar comandos, como rodar um script Python de limpeza de dados.",
+      "en": "Claude Code shows you code, but it cannot run commands, such as running a Python data cleaning script."
+    },
+    "explanation": {
+      "pt": "Além de ler e editar arquivos, o Claude Code executa comandos no seu ambiente, como scripts e testes, e verifica o resultado. As permissões controlam o que ele pode rodar sem perguntar.",
+      "en": "Besides reading and editing files, Claude Code runs commands in your environment, such as scripts and tests, and checks the results. Permissions control what it may run without asking."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  },
+  {
+    "id": "beg-029",
+    "level": "beginner",
+    "topic": "fluxos",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Você pode colar a mensagem de erro de um script de carga de dados e pedir ao Claude Code para achar a causa e corrigir.",
+      "en": "You can paste the error message from a data loading script and ask Claude Code to find the cause and fix it."
+    },
+    "explanation": {
+      "pt": "Corrigir bugs é um fluxo documentado: você compartilha o erro, ele investiga o código até a causa e aplica a correção. Informar o comando que reproduz o erro ajuda.",
+      "en": "Fixing bugs is a documented workflow: you share the error, it traces the code to the root cause and applies a fix. Telling it the command that reproduces the error helps."
+    },
+    "docUrl": "https://code.claude.com/docs/en/common-workflows"
+  },
+  {
+    "id": "beg-030",
+    "level": "beginner",
+    "topic": "fundamentos",
+    "roles": ["analyst", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Quando o Claude Code altera um script de análise, a mudança fica só na conversa e você precisa copiá-la para o arquivo.",
+      "en": "When Claude Code changes an analysis script, the change stays in the chat and you have to copy it into the file."
+    },
+    "explanation": {
+      "pt": "O Claude Code edita os arquivos do projeto diretamente, depois da sua aprovação quando o modo de permissão exige. Você revisa a mudança e ela já está no arquivo.",
+      "en": "Claude Code edits project files directly, after your approval when the permission mode requires it. You review the change and it is already in the file."
+    },
+    "docUrl": "https://code.claude.com/docs/en/overview"
+  }
+]

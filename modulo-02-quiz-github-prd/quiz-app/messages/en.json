@@ -1,0 +1,179 @@
+{
+  "Metadata": {
+    "title": "Claude Code Quiz for Data",
+    "description": "A True or False quiz about Claude Code for data engineers, analysts and scientists."
+  },
+  "Header": {
+    "skipToContent": "Skip to content",
+    "ranking": "Leaderboard",
+    "switchLocale": "Switch language to Portuguese",
+    "toggleTheme": "Toggle light/dark theme"
+  },
+  "Footer": {
+    "source": "Source on GitHub",
+    "credit": "Made by {author}",
+    "disclaimer": "Independent project, not officially affiliated with Anthropic."
+  },
+  "Home": {
+    "eyebrow": "$ claude --quiz data",
+    "title": "Claude Code Quiz for Data Professionals",
+    "subtitle": "Test what you know about Claude Code in real data scenarios: SQL, dbt, notebooks, pipelines and warehouses. 15 True or False statements, with an explanation and a docs link after each answer.",
+    "whatIs": "Claude Code is Anthropic's agentic coding tool: it reads your repository, edits files and runs commands from natural-language instructions.",
+    "start": "Start",
+    "ranking": "View leaderboard",
+    "audienceTitle": "Made for",
+    "roles": {
+      "engineering": "Data Engineering",
+      "analytics": "Data Analytics",
+      "science": "Data Science"
+    }
+  },
+  "Play": {
+    "title": "Choose a level",
+    "subtitle": "Each game draws 15 questions from the level. Answer fast to earn a bonus and keep your streak going.",
+    "questionCount": "{count} questions",
+    "bestScore": "Your best score: {score}",
+    "noBestScore": "You haven't played this level yet.",
+    "start": "Play",
+    "startLevel": "Play the {level} level",
+    "levels": {
+      "beginner": {
+        "name": "Beginner",
+        "audience": "Data leaders and analysts getting started",
+        "description": "What Claude Code is and where it runs, data use cases (SQL, metric documentation, recurring analyses) and care with sensitive data."
+      },
+      "intermediate": {
+        "name": "Intermediate",
+        "audience": "Analysts, scientists and engineers day to day",
+        "description": "CLAUDE.md for data projects, /init, Jupyter notebooks, tests, plan mode, permission modes, context management and custom commands."
+      },
+      "advanced": {
+        "name": "Advanced",
+        "audience": "Data engineers and power users",
+        "description": "MCP with databases and warehouses, hooks, permission rules, subagents, skills, non-interactive mode in CI and orchestrators, GitHub Actions and the Agent SDK."
+      }
+    }
+  },
+  "Quiz": {
+    "title": "Game · {level}",
+    "loading": "Setting up your game…",
+    "progress": "Question {current} of {total}",
+    "score": "Points",
+    "streak": "Streak",
+    "streakLabel": "{count, plural, one {# correct in a row} other {# correct in a row}}",
+    "timer": "Time",
+    "statement": "Statement {current} of {total}",
+    "answerTrue": "True",
+    "answerFalse": "False",
+    "shortcuts": "Shortcuts: T for True, F for False, arrow keys to switch and Enter to confirm.",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "answerWas": "The statement is {answer, select, true {true} other {false}}.",
+    "points": "+{points} points",
+    "bonus": "includes a {bonus}-point time bonus",
+    "docLink": "Read the docs",
+    "newTab": "(opens in a new tab)",
+    "next": "Next question",
+    "seeResult": "See result",
+    "errorTitle": "Something went wrong",
+    "errorNetwork": "Could not reach the server. Check your connection.",
+    "errorExpired": "Your game expired after 60 minutes of inactivity.",
+    "retry": "Try again",
+    "newGame": "Start a new game"
+  },
+  "Result": {
+    "title": "Result",
+    "heading": "Game over · {level}",
+    "score": "Score",
+    "scoreOf": "out of {max} possible",
+    "correct": "Correct answers",
+    "correctOf": "{correct} of {total}",
+    "time": "Total time",
+    "duration": "{minutes, plural, =0 {} other {# min }}{seconds} s",
+    "maxStreak": "Longest streak",
+    "newBest": "New best score for this level!",
+    "bands": {
+      "explorer": {
+        "name": "Explorer",
+        "description": "You are just getting to know Claude Code. The review below is a good place to start."
+      },
+      "practitioner": {
+        "name": "Practitioner",
+        "description": "You know the basics. Dig into the ones you missed."
+      },
+      "specialist": {
+        "name": "Specialist",
+        "description": "You know Claude Code well for everyday data work."
+      },
+      "master": {
+        "name": "Claude Code for Data Master",
+        "description": "Near-total mastery. How about trying the next level?"
+      }
+    },
+    "reviewTitle": "Question review",
+    "yourAnswer": "Your answer: {answer, select, true {True} other {False}}",
+    "correctAnswer": "Correct answer: {answer, select, true {True} other {False}}",
+    "questionPoints": "{points} pts",
+    "playAgain": "Play again",
+    "otherLevel": "Choose another level",
+    "ranking": "See leaderboard",
+    "leaderboard": {
+      "title": "Join the leaderboard",
+      "label": "Nickname",
+      "hint": "3 to 20 characters: letters, numbers, space, _, - and period.",
+      "submit": "Submit",
+      "submitting": "Submitting…",
+      "success": "Done! You are #{rank} on this level's leaderboard.",
+      "already": "This game is already on the leaderboard.",
+      "view": "See my position",
+      "errors": {
+        "length": "Your nickname must be 3 to 20 characters long.",
+        "chars": "Use only unaccented letters, numbers, space, _, - and period.",
+        "profanity": "Please choose another nickname.",
+        "rateLimited": "Too many submissions in a row. Try again in a few minutes.",
+        "generic": "Could not submit. Please try again."
+      }
+    }
+  },
+  "Ranking": {
+    "title": "Leaderboard",
+    "subtitle": "Top 50 per level. Ties go to the faster game, then to whoever submitted first.",
+    "levelsLabel": "Level",
+    "periodLabel": "Period",
+    "periods": {
+      "all": "All time",
+      "7d": "Last 7 days"
+    },
+    "caption": "{level} leaderboard · {period}",
+    "rank": "Rank",
+    "nickname": "Nickname",
+    "score": "Score",
+    "correct": "Correct",
+    "time": "Time",
+    "date": "Date",
+    "you": "you",
+    "yourPosition": "Your position",
+    "notInPeriod": "Your game does not appear for this level and period.",
+    "empty": "No one has joined this level's leaderboard yet. Want to be the first?",
+    "play": "Play this level"
+  },
+  "Share": {
+    "title": "{name}'s result",
+    "anonymous": "Anonymous",
+    "heading": "{name} played the {level} level",
+    "description": "{score} points and {correct} of {total} correct on the {level} level of the Claude Code Quiz for Data.",
+    "text": "I scored {score} points on the {level} level of the Claude Code Quiz for Data! Data engineers, analysts and scientists: can you beat me?",
+    "ogAlt": "{name}'s result: {score} points on the {level} level",
+    "points": "points",
+    "correct": "correct",
+    "cta": "Play too",
+    "sectionTitle": "Share your result",
+    "native": "Share…",
+    "linkedin": "LinkedIn",
+    "x": "X (Twitter)",
+    "whatsapp": "WhatsApp",
+    "copy": "Copy link",
+    "copied": "Link copied!",
+    "copyFailed": "Could not copy. The link is: {url}"
+  }
+}

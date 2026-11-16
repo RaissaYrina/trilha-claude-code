@@ -1,0 +1,512 @@
+[
+  {
+    "id": "adv-001",
+    "level": "advanced",
+    "topic": "mcp",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Com um servidor MCP de banco de dados configurado, o Claude Code pode consultar o schema e os dados do banco durante a sessão.",
+      "en": "With a database MCP server configured, Claude Code can query the database schema and data during the session."
+    },
+    "explanation": {
+      "pt": "O MCP conecta o Claude Code a ferramentas e fontes de dados externas. A própria documentação dá como exemplo consultar um banco PostgreSQL por meio de um servidor MCP.",
+      "en": "MCP connects Claude Code to external tools and data sources. The docs themselves give querying a PostgreSQL database through an MCP server as an example."
+    },
+    "docUrl": "https://code.claude.com/docs/en/mcp"
+  },
+  {
+    "id": "adv-002",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Um hook PostToolUse com matcher Edit|Write pode rodar automaticamente um linter de SQL, como o sqlfluff, depois de cada edição de arquivo.",
+      "en": "A PostToolUse hook with an Edit|Write matcher can automatically run a SQL linter, such as sqlfluff, after every file edit."
+    },
+    "explanation": {
+      "pt": "O PostToolUse dispara depois que uma ferramenta roda com sucesso. O guia de hooks mostra exatamente esse padrão para rodar um formatador após Edit e Write; trocar pelo sqlfluff funciona igual.",
+      "en": "PostToolUse fires after a tool call succeeds. The hooks guide shows this exact pattern to run a formatter after Edit and Write; swapping in sqlfluff works the same way."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks-guide"
+  },
+  {
+    "id": "adv-003",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Um hook PreToolUse pode bloquear uma chamada de ferramenta, como um comando que apagaria tabelas de produção.",
+      "en": "A PreToolUse hook can block a tool call, such as a command that would drop production tables."
+    },
+    "explanation": {
+      "pt": "O PreToolUse roda antes da ferramenta e pode bloqueá-la, saindo com código 2 ou devolvendo permissionDecision \"deny\". O motivo é repassado ao Claude.",
+      "en": "PreToolUse runs before the tool and can block it, by exiting with code 2 or returning permissionDecision \"deny\". The reason is passed back to Claude."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks"
+  },
+  {
+    "id": "adv-004",
+    "level": "advanced",
+    "topic": "permissoes",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Regras deny no settings.json não conseguem impedir comandos Bash específicos, como `dbt run --target prod`.",
+      "en": "Deny rules in settings.json cannot stop specific Bash commands, such as `dbt run --target prod`."
+    },
+    "explanation": {
+      "pt": "Regras de permissão aceitam especificadores, como Bash(dbt run *), e negam só os comandos que casam com eles. Elas também entendem operadores de shell como &&.",
+      "en": "Permission rules accept specifiers such as Bash(dbt run *) and deny only the matching commands. They also understand shell operators such as &&."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "adv-005",
+    "level": "advanced",
+    "topic": "headless",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O modo não interativo (`claude -p`) não pode ser chamado de dentro de uma task de um orquestrador como o Airflow.",
+      "en": "Non-interactive mode (`claude -p`) cannot be called from inside a task in an orchestrator such as Airflow."
+    },
+    "explanation": {
+      "pt": "O claude -p é um comando de terminal comum: roda em CI, em hooks de pre-commit e em qualquer script, inclusive tasks de orquestradores. Ele devolve código de saída 0 em sucesso.",
+      "en": "claude -p is an ordinary command-line call: it runs in CI, pre-commit hooks and any script, orchestrator tasks included. It exits with code 0 on success."
+    },
+    "docUrl": "https://code.claude.com/docs/en/headless"
+  },
+  {
+    "id": "adv-006",
+    "level": "advanced",
+    "topic": "settings",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O arquivo .claude/settings.local.json foi pensado para ser commitado e compartilhado com o time de dados.",
+      "en": "The .claude/settings.local.json file is meant to be committed and shared with the data team."
+    },
+    "explanation": {
+      "pt": "O settings.local.json vale só para você naquele projeto, e o Claude Code o mantém fora do Git quando cria o arquivo. O que se compartilha com o time é o .claude/settings.json.",
+      "en": "settings.local.json applies only to you in that project, and Claude Code keeps it out of git when it creates the file. What you share with the team is .claude/settings.json."
+    },
+    "docUrl": "https://code.claude.com/docs/en/settings"
+  },
+  {
+    "id": "adv-007",
+    "level": "advanced",
+    "topic": "mcp",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Um servidor MCP de warehouse adicionado com escopo project fica no .mcp.json e pode ser compartilhado com o time pelo Git.",
+      "en": "A warehouse MCP server added with project scope is stored in .mcp.json and can be shared with the team through git."
+    },
+    "explanation": {
+      "pt": "Servidores MCP têm três escopos: local (padrão, só você no projeto), project (.mcp.json, compartilhado) e user (você em todos os projetos). O escopo project é feito para ir ao controle de versão.",
+      "en": "MCP servers have three scopes: local (default, just you in this project), project (.mcp.json, shared) and user (you across all projects). Project scope is meant for version control."
+    },
+    "docUrl": "https://code.claude.com/docs/en/mcp"
+  },
+  {
+    "id": "adv-008",
+    "level": "advanced",
+    "topic": "mcp",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Ao clonar um repositório com .mcp.json, o Claude Code passa a usar os servidores MCP do projeto sem pedir aprovação.",
+      "en": "After cloning a repository with a .mcp.json, Claude Code starts using the project's MCP servers without asking for approval."
+    },
+    "explanation": {
+      "pt": "Por segurança, nas sessões interativas, o Claude Code pede aprovação antes de usar servidores de escopo project vindos de um .mcp.json. Até lá, eles ficam como aprovação pendente.",
+      "en": "For security, in interactive sessions Claude Code asks for approval before using project-scoped servers from a .mcp.json. Until then they show as pending approval."
+    },
+    "docUrl": "https://code.claude.com/docs/en/mcp"
+  },
+  {
+    "id": "adv-009",
+    "level": "advanced",
+    "topic": "mcp",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Ao conectar um servidor MCP a um banco relacional, a documentação recomenda usar um usuário somente leitura na string de conexão.",
+      "en": "When connecting an MCP server to a relational database, the docs recommend using a read-only user in the connection string."
+    },
+    "explanation": {
+      "pt": "Com um usuário só de leitura, as consultas que o Claude executar não conseguem alterar dados. É uma camada de proteção no próprio banco, independente das permissões do Claude Code.",
+      "en": "With a read-only user, the queries Claude runs cannot modify data. It is a protection layer in the database itself, independent of Claude Code's permissions."
+    },
+    "docUrl": "https://code.claude.com/docs/en/mcp"
+  },
+  {
+    "id": "adv-010",
+    "level": "advanced",
+    "topic": "seguranca",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Conectar um servidor MCP de terceiros que busca dados externos não traz risco de prompt injection, porque o Claude Code isola esse conteúdo.",
+      "en": "Connecting a third-party MCP server that fetches external data carries no prompt injection risk, because Claude Code isolates that content."
+    },
+    "explanation": {
+      "pt": "A documentação pede para confirmar que você confia em cada servidor antes de conectá-lo e avisa que servidores que buscam conteúdo externo podem expor você a prompt injection.",
+      "en": "The docs ask you to verify that you trust each server before connecting it, and warn that servers fetching external content can expose you to prompt injection."
+    },
+    "docUrl": "https://code.claude.com/docs/en/mcp"
+  },
+  {
+    "id": "adv-011",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Um hook PostToolUse pode desfazer uma edição num modelo SQL, porque roda antes de a ferramenta aplicar a mudança.",
+      "en": "A PostToolUse hook can undo an edit to a SQL model, because it runs before the tool applies the change."
+    },
+    "explanation": {
+      "pt": "O PostToolUse roda depois que a ferramenta já executou, então não pode desfazê-la; ele pode, no máximo, devolver um feedback ao Claude. Para impedir uma ação, use o PreToolUse.",
+      "en": "PostToolUse runs after the tool has already run, so it cannot undo it; at most it can send feedback to Claude. To prevent an action, use PreToolUse."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks"
+  },
+  {
+    "id": "adv-012",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer"],
+    "dataScenario": false,
+    "answer": false,
+    "statement": {
+      "pt": "Num hook PreToolUse do tipo command, sair com código 1 bloqueia a chamada da ferramenta.",
+      "en": "In a command-type PreToolUse hook, exiting with code 1 blocks the tool call."
+    },
+    "explanation": {
+      "pt": "O código que bloqueia é o 2, com o motivo escrito no stderr. Outros códigos diferentes de zero são erros não bloqueantes: a ação segue e aparece um aviso de erro do hook.",
+      "en": "The blocking code is 2, with the reason written to stderr. Other non-zero codes are non-blocking errors: the action goes ahead and a hook error notice appears."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks-guide"
+  },
+  {
+    "id": "adv-013",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Se um hook PreToolUse responder \"allow\" para um comando que carrega dados, uma regra deny do settings para esse comando deixa de valer.",
+      "en": "If a PreToolUse hook answers \"allow\" for a data loading command, a settings deny rule for that command stops applying."
+    },
+    "explanation": {
+      "pt": "Mesmo com \"allow\" vindo de um hook, as regras deny e ask continuam valendo, inclusive as listas managed da empresa. Hooks não furam o sistema de permissões.",
+      "en": "Even with \"allow\" from a hook, deny and ask rules still apply, including enterprise managed deny lists. Hooks don't bypass the permission system."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks"
+  },
+  {
+    "id": "adv-014",
+    "level": "advanced",
+    "topic": "permissoes",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Com Bash(dbt run *) em deny e Bash(dbt run --target dev) em allow, o Claude Code ainda bloqueia `dbt run --target dev`.",
+      "en": "With Bash(dbt run *) in deny and Bash(dbt run --target dev) in allow, Claude Code still blocks `dbt run --target dev`."
+    },
+    "explanation": {
+      "pt": "As regras são avaliadas na ordem deny, ask, allow, e a primeira que casa decide. Ser mais específica não dá prioridade a uma regra allow.",
+      "en": "Rules are evaluated in the order deny, ask, allow, and the first match decides. Being more specific does not give an allow rule priority."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "adv-015",
+    "level": "advanced",
+    "topic": "seguranca",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Uma regra deny Bash(curl *) basta para impedir que qualquer comando envie dados do projeto para a internet.",
+      "en": "A Bash(curl *) deny rule is enough to stop any command from sending project data to the internet."
+    },
+    "explanation": {
+      "pt": "A regra casa com o texto do comando: barra `curl https://...`, mas não `/usr/bin/curl` nem outras ferramentas. Para isolar a rede de fato, a documentação indica o sandbox.",
+      "en": "The rule matches the command text: it stops `curl https://...` but not `/usr/bin/curl` or other tools. For real network isolation, the docs point to the sandbox."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "adv-016",
+    "level": "advanced",
+    "topic": "seguranca",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "A regra deny Read(./dados/clientes.csv) também impede que um script Python executado pelo Claude Code abra esse arquivo.",
+      "en": "The deny rule Read(./data/customers.csv) also stops a Python script run by Claude Code from opening that file."
+    },
+    "explanation": {
+      "pt": "Regras de Read e Edit valem para as ferramentas de arquivo do Claude Code, não para processos que abrem arquivos por conta própria. Para bloquear no nível do sistema operacional, use o sandbox.",
+      "en": "Read and Edit rules apply to Claude Code's file tools, not to processes that open files themselves. To block at the operating system level, use the sandbox."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permissions"
+  },
+  {
+    "id": "adv-017",
+    "level": "advanced",
+    "topic": "sandbox",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O sandbox do Claude Code restringe escrita em disco e acesso à rede dos comandos de shell, incluindo processos filhos, como um script Python.",
+      "en": "Claude Code's sandbox restricts disk writes and network access for shell commands, including child processes such as a Python script."
+    },
+    "explanation": {
+      "pt": "O sandbox vale para comandos Bash, PowerShell e Monitor e seus processos filhos. Por padrão, a escrita fica restrita à pasta de trabalho e a rede passa por um proxy com uma lista de domínios permitidos.",
+      "en": "The sandbox applies to Bash, PowerShell and Monitor commands and their child processes. By default, writes are limited to the working directory and network traffic goes through a proxy with an allowed-domain list."
+    },
+    "docUrl": "https://code.claude.com/docs/en/sandboxing"
+  },
+  {
+    "id": "adv-018",
+    "level": "advanced",
+    "topic": "headless",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Num `claude -p` disparado por um job agendado, sem modo de permissão definido, uma ação que precisaria de aprovação é negada.",
+      "en": "In a `claude -p` run started by a scheduled job, with no permission mode set, an action that would need approval is denied."
+    },
+    "explanation": {
+      "pt": "Sem ninguém para aprovar, o claude -p começa no modo Manual e nega o que pediria aprovação, a menos que algo aprove, como --allowedTools ou um hook PermissionRequest.",
+      "en": "With nobody to approve, claude -p starts in Manual mode and denies anything that would prompt, unless something approves it, such as --allowedTools or a PermissionRequest hook."
+    },
+    "docUrl": "https://code.claude.com/docs/en/headless"
+  },
+  {
+    "id": "adv-019",
+    "level": "advanced",
+    "topic": "headless",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Com --output-format json e --json-schema, o `claude -p` pode devolver um resultado estruturado, como a lista de colunas com nulos, para o pipeline consumir.",
+      "en": "With --output-format json and --json-schema, `claude -p` can return a structured result, such as the list of columns with nulls, for the pipeline to consume."
+    },
+    "explanation": {
+      "pt": "O resultado que segue o schema vem no campo structured_output do JSON. A documentação recomenda checar se o campo existe, porque uma execução pode terminar sem saída válida.",
+      "en": "The schema-conforming result comes in the JSON's structured_output field. The docs recommend checking that the field exists, since a run can end without valid output."
+    },
+    "docUrl": "https://code.claude.com/docs/en/headless"
+  },
+  {
+    "id": "adv-020",
+    "level": "advanced",
+    "topic": "github-actions",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "Na GitHub Action do Claude Code, o CLAUDE.md do repositório é ignorado, então as convenções do projeto de dados precisam ir no workflow.",
+      "en": "In the Claude Code GitHub Action, the repository's CLAUDE.md is ignored, so the data project's conventions have to go in the workflow."
+    },
+    "explanation": {
+      "pt": "A Action segue o CLAUDE.md da raiz do repositório ao criar PRs e responder pedidos. É o mesmo arquivo de convenções usado localmente.",
+      "en": "The Action follows the CLAUDE.md at the repository root when creating PRs and answering requests. It is the same conventions file used locally."
+    },
+    "docUrl": "https://code.claude.com/docs/en/github-actions"
+  },
+  {
+    "id": "adv-021",
+    "level": "advanced",
+    "topic": "github-actions",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "A GitHub Action do Claude Code pode rodar num agendamento (cron) com um prompt fixo, como gerar toda manhã um resumo dos testes de dados que falharam.",
+      "en": "The Claude Code GitHub Action can run on a schedule (cron) with a fixed prompt, such as producing a morning summary of failed data tests."
+    },
+    "explanation": {
+      "pt": "Além de responder a menções @claude, a Action roda sozinha quando recebe o input prompt, em qualquer evento do GitHub, incluindo schedule. Ela usa os runners e os minutos do GitHub Actions.",
+      "en": "Besides answering @claude mentions, the Action runs on its own when given a prompt input, on any GitHub event, schedule included. It uses GitHub Actions runners and minutes."
+    },
+    "docUrl": "https://code.claude.com/docs/en/github-actions"
+  },
+  {
+    "id": "adv-022",
+    "level": "advanced",
+    "topic": "agent-sdk",
+    "roles": ["scientist", "engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Com o Agent SDK, dá para construir em Python um agente de dados que usa as mesmas ferramentas e o mesmo loop de agente do Claude Code.",
+      "en": "With the Agent SDK, you can build a data agent in Python that uses the same tools and agent loop as Claude Code."
+    },
+    "explanation": {
+      "pt": "O Agent SDK oferece as mesmas ferramentas, loop de agente e gestão de contexto do Claude Code, programáveis em Python e TypeScript.",
+      "en": "The Agent SDK provides the same tools, agent loop and context management that power Claude Code, programmable in Python and TypeScript."
+    },
+    "docUrl": "https://code.claude.com/docs/en/agent-sdk/overview"
+  },
+  {
+    "id": "adv-023",
+    "level": "advanced",
+    "topic": "subagents",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "O subagent embutido Explore pode editar arquivos enquanto investiga onde uma métrica é calculada no projeto.",
+      "en": "The built-in Explore subagent can edit files while it investigates where a metric is computed in the project."
+    },
+    "explanation": {
+      "pt": "O Explore é um agente rápido e somente leitura, feito para buscar e analisar a base de código. As ferramentas Write e Edit ficam bloqueadas para ele.",
+      "en": "Explore is a fast, read-only agent built for searching and analyzing codebases. The Write and Edit tools are denied to it."
+    },
+    "docUrl": "https://code.claude.com/docs/en/sub-agents"
+  },
+  {
+    "id": "adv-024",
+    "level": "advanced",
+    "topic": "subagents",
+    "roles": ["engineer", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Um subagent em .claude/agents/ para revisar notebooks pode ter um conjunto restrito de ferramentas e usar um modelo diferente da conversa principal.",
+      "en": "A subagent in .claude/agents/ for reviewing notebooks can have a restricted set of tools and use a different model from the main conversation."
+    },
+    "explanation": {
+      "pt": "No frontmatter do subagent, tools e disallowedTools limitam as ferramentas, e model define o modelo (ou inherit, para herdar o da conversa principal).",
+      "en": "In the subagent's frontmatter, tools and disallowedTools limit its tools, and model sets its model (or inherit, to use the main conversation's)."
+    },
+    "docUrl": "https://code.claude.com/docs/en/sub-agents"
+  },
+  {
+    "id": "adv-025",
+    "level": "advanced",
+    "topic": "subagents",
+    "roles": ["scientist", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "O Claude Code pode delegar sozinho uma tarefa a um subagent de análise exploratória quando o description dele combina com o pedido.",
+      "en": "Claude Code can delegate a task on its own to an exploratory analysis subagent when its description matches the request."
+    },
+    "explanation": {
+      "pt": "A delegação automática considera o pedido, o campo description dos subagents e o contexto atual. Frases como \"use proactively\" no description incentivam esse uso.",
+      "en": "Automatic delegation considers the request, the subagents' description field and the current context. Phrases like \"use proactively\" in the description encourage it."
+    },
+    "docUrl": "https://code.claude.com/docs/en/sub-agents"
+  },
+  {
+    "id": "adv-026",
+    "level": "advanced",
+    "topic": "settings",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": false,
+    "answer": false,
+    "statement": {
+      "pt": "Uma flag de linha de comando pode sobrescrever uma regra de permissão definida nas configurações managed da empresa.",
+      "en": "A command-line flag can override a permission rule set in the company's managed settings."
+    },
+    "explanation": {
+      "pt": "A precedência é: managed, linha de comando, projeto local, projeto compartilhado e usuário. Nenhum outro nível, nem os argumentos da CLI, sobrescreve uma regra managed.",
+      "en": "Precedence is: managed, command line, project local, shared project and user. No other level, command-line arguments included, can override a managed rule."
+    },
+    "docUrl": "https://code.claude.com/docs/en/settings"
+  },
+  {
+    "id": "adv-027",
+    "level": "advanced",
+    "topic": "permissoes",
+    "roles": ["engineer", "analyst", "scientist"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "No modo auto, um modelo classificador separado revisa as ações antes de executá-las, em vez de pedir sua aprovação a cada passo do pipeline.",
+      "en": "In auto mode, a separate classifier model reviews actions before they run, instead of asking for your approval at every pipeline step."
+    },
+    "explanation": {
+      "pt": "O classificador bloqueia ações que vão além do pedido, miram infraestrutura desconhecida ou parecem induzidas por conteúdo hostil. A documentação avisa que isso reduz prompts, mas não garante segurança.",
+      "en": "The classifier blocks actions that go beyond your request, target unrecognized infrastructure or look driven by hostile content. The docs warn that it reduces prompts but does not guarantee safety."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permission-modes"
+  },
+  {
+    "id": "adv-028",
+    "level": "advanced",
+    "topic": "permissoes",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": false,
+    "statement": {
+      "pt": "A documentação recomenda o modo bypassPermissions para o trabalho diário com o banco de produção, para evitar interrupções.",
+      "en": "The docs recommend bypassPermissions mode for day-to-day work against the production database, to avoid interruptions."
+    },
+    "explanation": {
+      "pt": "O bypassPermissions libera tudo sem perguntar e é indicado só para contêineres e VMs isolados. Ele não protege contra prompt injection nem contra ações indesejadas.",
+      "en": "bypassPermissions allows everything without asking and is meant only for isolated containers and VMs. It offers no protection against prompt injection or unintended actions."
+    },
+    "docUrl": "https://code.claude.com/docs/en/permission-modes"
+  },
+  {
+    "id": "adv-029",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer", "analyst"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Hooks definidos no .claude/settings.json podem ser commitados para que todo o time de dados rode as mesmas validações.",
+      "en": "Hooks defined in .claude/settings.json can be committed so the whole data team runs the same checks."
+    },
+    "explanation": {
+      "pt": "O .claude/settings.json é o escopo de projeto que pode ir para o Git. Hooks em ~/.claude/settings.json valem só para você, e os de settings.local.json ficam fora do Git.",
+      "en": ".claude/settings.json is the project scope that can be committed. Hooks in ~/.claude/settings.json apply only to you, and those in settings.local.json stay out of git."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks"
+  },
+  {
+    "id": "adv-030",
+    "level": "advanced",
+    "topic": "hooks",
+    "roles": ["engineer"],
+    "dataScenario": true,
+    "answer": true,
+    "statement": {
+      "pt": "Num hook, o matcher mcp__warehouse__.* pega todas as ferramentas de um servidor MCP chamado warehouse.",
+      "en": "In a hook, the matcher mcp__warehouse__.* matches every tool of an MCP server named warehouse."
+    },
+    "explanation": {
+      "pt": "Ferramentas MCP seguem o padrão mcp__<servidor>__<ferramenta>, e um matcher com caracteres especiais é tratado como expressão regular. Já mcp__warehouse sozinho não casa com nenhuma ferramenta.",
+      "en": "MCP tools follow the mcp__<server>__<tool> pattern, and a matcher with special characters is treated as a regular expression. mcp__warehouse alone matches no tool."
+    },
+    "docUrl": "https://code.claude.com/docs/en/hooks"
+  }
+]
