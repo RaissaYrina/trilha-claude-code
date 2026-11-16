@@ -1,11 +1,12 @@
 import { nanoid } from "nanoid";
 import { z } from "zod";
 import { routing } from "@/i18n/routing";
-import { hashIp, parseBody, withErrors } from "@/lib/api";
+import { hashIp, parseBody, rateLimited, withErrors } from "@/lib/api";
 import { createSession } from "@/lib/db/sessions";
 import { LEVELS } from "@/lib/levels";
 import { getLevelQuestions } from "@/lib/questions/loader";
 import { pickQuestions } from "@/lib/questions/picker";
+import { checkRateLimit, RATE_LIMITS } from "@/lib/rate-limit";
 import { publicQuestionAt, type CreatedSession } from "@/lib/session";
 
 export const runtime = "nodejs";
@@ -21,6 +22,10 @@ export const POST = withErrors(async (req: Request) => {
   if (body.error) return body.error;
   const { level, locale } = body.data;
 
+  const ipHash = hashIp(req);
+  const limit = await checkRateLimit(RATE_LIMITS.session, ipHash);
+  if (!limit.ok) return rateLimited(limit.retryAfterSeconds);
+
   const picked = pickQuestions(getLevelQuestions(level));
   const session = await createSession({
     share_id: nanoid(10),
@@ -28,7 +33,7 @@ export const POST = withErrors(async (req: Request) => {
     locale,
     question_ids: picked.map((q) => q.id),
     current_served_at: new Date().toISOString(),
-    ip_hash: hashIp(req),
+    ip_hash: ipHash,
   });
 
   return Response.json(

@@ -18,6 +18,9 @@ vi.mock("@/lib/db/sessions", (): Api => ({
   advanceSession: (...a) => fake.db!.api.advanceSession(...a),
   listAnswers: (...a) => fake.db!.api.listAnswers(...a),
 }));
+vi.mock("@/lib/db/rate-limits", (): FakeDb["limits"] => ({
+  hitRateLimit: (...a) => fake.db!.limits.hitRateLimit(...a),
+}));
 
 const { POST: createSession } = await import("@/app/api/sessions/route");
 const { GET: getSession } = await import("@/app/api/sessions/[id]/route");
@@ -102,6 +105,22 @@ describe("POST /api/sessions", () => {
     const res = await createSession(post(body));
     expect(res.status).toBe(400);
     expect((await res.json()).error.code).toBe("INVALID_BODY");
+  });
+
+  it("429 a partir da 11ª sessão do mesmo IP em 10 min", async () => {
+    const ip = { "x-forwarded-for": "198.51.100.4" };
+    const body = { level: "beginner", locale: "pt" };
+    for (let i = 0; i < 10; i++) {
+      expect((await createSession(post(body, ip))).status).toBe(201);
+    }
+
+    const res = await createSession(post(body, ip));
+    expect(res.status).toBe(429);
+    expect((await res.json()).error.code).toBe("RATE_LIMITED");
+    expect(Number(res.headers.get("retry-after"))).toBeGreaterThan(0);
+    // Outro IP não é afetado.
+    const other = { "x-forwarded-for": "198.51.100.5" };
+    expect((await createSession(post(body, other))).status).toBe(201);
   });
 
   it("500 sem detalhes quando falta configuração", async () => {

@@ -8,11 +8,31 @@ export type ErrorCode =
   | "SESSION_NOT_FOUND"
   | "SESSION_EXPIRED"
   | "ALREADY_ANSWERED"
+  | "ALREADY_SUBMITTED"
+  | "INVALID_NICKNAME"
+  | "INVALID_QUERY"
+  | "SESSION_NOT_COMPLETED"
+  | "RATE_LIMITED"
   | "INTERNAL_ERROR";
 
 /** Resposta de erro no formato `{ error: { code, message } }` (PRD §6.5). */
-export function jsonError(code: ErrorCode, message: string, status: number) {
-  return Response.json({ error: { code, message } }, { status });
+export function jsonError(
+  code: ErrorCode,
+  message: string,
+  status: number,
+  headers?: HeadersInit,
+) {
+  return Response.json({ error: { code, message } }, { status, headers });
+}
+
+/** 429 com `Retry-After`, para quando o IP passou do limite da janela. */
+export function rateLimited(retryAfterSeconds: number) {
+  return jsonError(
+    "RATE_LIMITED",
+    "Muitas requisições. Tente novamente em alguns minutos.",
+    429,
+    { "Retry-After": String(retryAfterSeconds) },
+  );
 }
 
 type Parsed<T> = { data: T; error?: never } | { data?: never; error: Response };

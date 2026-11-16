@@ -1,14 +1,83 @@
 import { randomUUID } from "node:crypto";
+import type * as LeaderboardDb from "@/lib/db/leaderboard";
+import type { NewEntry } from "@/lib/db/leaderboard";
+import type * as RateLimitsDb from "@/lib/db/rate-limits";
 import type * as Db from "@/lib/db/sessions";
+import type { EntryRow } from "@/lib/leaderboard";
 import type { AnswerRow, SessionRow } from "@/lib/session";
 
+type StoredEntry = NewEntry & EntryRow;
+
+/** Mesma ordem do índice do ranking: score desc, tempo asc, data asc. */
+function byRanking(a: StoredEntry, b: StoredEntry): number {
+  return (
+    b.score - a.score ||
+    a.total_time_ms - b.total_time_ms ||
+    Date.parse(a.created_at) - Date.parse(b.created_at)
+  );
+}
+
+function toRow({
+  nickname,
+  score,
+  correct_count,
+  total_time_ms,
+  created_at,
+}: StoredEntry): EntryRow {
+  return { nickname, score, correct_count, total_time_ms, created_at };
+}
+
 /**
- * Versão em memória de `lib/db/sessions.ts`, com as mesmas garantias do banco:
- * PK (session_id, position) nas respostas e update condicionado ao índice.
+ * Versão em memória de `lib/db/`, com as mesmas garantias do banco: PK
+ * (session_id, position) nas respostas, update condicionado ao índice, unique
+ * em `leaderboard_entries.session_id` e contagem atômica do rate limit.
  */
 export function createFakeDb() {
   const sessions = new Map<string, SessionRow>();
   const answers: AnswerRow[] = [];
+  const entries: StoredEntry[] = [];
+  const rateLimits = new Map<string, number>();
+
+  const leaderboard: typeof LeaderboardDb = {
+    async insertEntry(entry) {
+      if (entries.some((e) => e.session_id === entry.session_id)) {
+        return "duplicate";
+      }
+      entries.push({ ...entry, created_at: new Date().toISOString() });
+      return "ok";
+    },
+    async hasEntry(sessionId) {
+      return entries.some((e) => e.session_id === sessionId);
+    },
+    async listTop(level, since, limit) {
+      return entries
+        .filter((e) => e.level === level && (!since || e.created_at >= since))
+        .sort(byRanking)
+        .slice(0, limit)
+        .map(toRow);
+    },
+    async findPosition(shareId, since) {
+      const session = [...sessions.values()].find(
+        (s) => s.share_id === shareId,
+      );
+      const ranked = entries
+        .filter(
+          (e) =>
+            e.level === session?.level && (!since || e.created_at >= since),
+        )
+        .sort(byRanking);
+      const index = ranked.findIndex((e) => e.session_id === session?.id);
+      return index < 0 ? null : { ...toRow(ranked[index]), rank: index + 1 };
+    },
+  };
+
+  const limits: typeof RateLimitsDb = {
+    async hitRateLimit(key) {
+      const count = (rateLimits.get(key) ?? 0) + 1;
+      rateLimits.set(key, count);
+      return count;
+    },
+  };
 
   const api: typeof Db = {
     async createSession(input) {
@@ -78,5 +147,13 @@ export function createFakeDb() {
     },
   };
 
-  return { api, sessions, answers };
+  return {
+    api,
+    leaderboard,
+    limits,
+    sessions,
+    answers,
+    entries,
+    rateLimits,
+  };
 }
