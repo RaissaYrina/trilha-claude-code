@@ -81,3 +81,21 @@ describe("lib/db/sessions contra o Postgres local", () => {
     expect((await findSession(row.id))?.status).toBe("expired");
   });
 });
+
+describe("view question_stats", () => {
+  it("agrega respostas, taxa de acerto e tempo médio por pergunta", async () => {
+    const row = await newSession();
+    const { answer } = applyAnswer(row, true, new Date());
+    await insertAnswer(answer);
+
+    const { data, error } = await getSupabase()
+      .from("question_stats")
+      .select("question_id, answers, accuracy, avg_time_ms")
+      .eq("question_id", answer.question_id)
+      .single();
+    expect(error).toBeNull();
+    expect(Number(data!.answers)).toBeGreaterThanOrEqual(1);
+    expect(Number(data!.accuracy)).toBeGreaterThanOrEqual(0);
+    expect(Number(data!.accuracy)).toBeLessThanOrEqual(1);
+  });
+});

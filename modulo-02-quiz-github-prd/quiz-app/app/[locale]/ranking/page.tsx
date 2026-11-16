@@ -15,13 +15,11 @@ import {
   type Period,
 } from "@/lib/leaderboard";
 import { isLevel, LEVELS, type Level } from "@/lib/levels";
+import { SHARE_ID } from "@/lib/share";
 import { cn } from "@/lib/utils";
 
 // Depende da query (nível, período, destaque); o top muda a cada registro.
 export const dynamic = "force-dynamic";
-
-/** Formato do share_id (nanoid de 10). */
-const SHARE_ID = /^[A-Za-z0-9_-]{10}$/;
 
 function first(value: string | string[] | undefined): string {
   return (Array.isArray(value) ? value[0] : value) ?? "";

@@ -39,6 +39,17 @@ export async function hasEntry(sessionId: string): Promise<boolean> {
   return (count ?? 0) > 0;
 }
 
+/** Apelido com que a sessão entrou no ranking, ou null se não entrou. */
+export async function findNickname(sessionId: string): Promise<string | null> {
+  const { data, error } = await getSupabase()
+    .from("leaderboard_entries")
+    .select("nickname")
+    .eq("session_id", sessionId)
+    .maybeSingle();
+  if (error) throw error;
+  return data?.nickname ?? null;
+}
+
 /** Top do nível, já na ordem do ranking. `since` nulo = "Sempre". */
 export async function listTop(
   level: Level,

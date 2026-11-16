@@ -49,6 +49,9 @@ export function createFakeDb() {
     async hasEntry(sessionId) {
       return entries.some((e) => e.session_id === sessionId);
     },
+    async findNickname(sessionId) {
+      return entries.find((e) => e.session_id === sessionId)?.nickname ?? null;
+    },
     async listTop(level, since, limit) {
       return entries
         .filter((e) => e.level === level && (!since || e.created_at >= since))
@@ -100,6 +103,10 @@ export function createFakeDb() {
     },
     async findSession(id) {
       const row = sessions.get(id);
+      return row ? { ...row } : null;
+    },
+    async findSessionByShareId(shareId) {
+      const row = [...sessions.values()].find((s) => s.share_id === shareId);
       return row ? { ...row } : null;
     },
     async markExpired(id) {

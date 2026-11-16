@@ -156,5 +156,24 @@
     "notInPeriod": "Sua partida não aparece neste nível e período.",
     "empty": "Ninguém entrou no ranking deste nível ainda. Que tal ser a primeira pessoa?",
     "play": "Jogar este nível"
+  },
+  "Share": {
+    "title": "Resultado de {name}",
+    "anonymous": "Anônimo",
+    "heading": "{name} jogou o nível {level}",
+    "description": "{score} pontos e {correct} de {total} acertos no nível {level} do Claude Code Quiz para Dados.",
+    "text": "Fiz {score} pontos no nível {level} do Claude Code Quiz para Dados! Engenheiros, analistas e cientistas de dados: será que vocês me superam?",
+    "ogAlt": "Resultado de {name}: {score} pontos no nível {level}",
+    "points": "pontos",
+    "correct": "acertos",
+    "cta": "Jogar também",
+    "sectionTitle": "Compartilhar resultado",
+    "native": "Compartilhar…",
+    "linkedin": "LinkedIn",
+    "x": "X (Twitter)",
+    "whatsapp": "WhatsApp",
+    "copy": "Copiar link",
+    "copied": "Link copiado!",
+    "copyFailed": "Não foi possível copiar. O link é: {url}"
   }
 }

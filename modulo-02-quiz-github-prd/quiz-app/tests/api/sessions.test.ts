@@ -12,6 +12,7 @@ const fake = vi.hoisted(() => ({ db: null as FakeDb | null }));
 vi.mock("@/lib/db/sessions", (): Api => ({
   createSession: (...a) => fake.db!.api.createSession(...a),
   findSession: (...a) => fake.db!.api.findSession(...a),
+  findSessionByShareId: (...a) => fake.db!.api.findSessionByShareId(...a),
   markExpired: (...a) => fake.db!.api.markExpired(...a),
   markServed: (...a) => fake.db!.api.markServed(...a),
   insertAnswer: (...a) => fake.db!.api.insertAnswer(...a),

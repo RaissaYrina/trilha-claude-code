@@ -33,6 +33,18 @@ export async function findSession(id: string): Promise<SessionRow | null> {
   return data as SessionRow | null;
 }
 
+export async function findSessionByShareId(
+  shareId: string,
+): Promise<SessionRow | null> {
+  const { data, error } = await getSupabase()
+    .from("quiz_sessions")
+    .select(SESSION_COLUMNS)
+    .eq("share_id", shareId)
+    .maybeSingle();
+  if (error) throw error;
+  return data as SessionRow | null;
+}
+
 export async function markExpired(id: string): Promise<void> {
   const { error } = await getSupabase()
     .from("quiz_sessions")

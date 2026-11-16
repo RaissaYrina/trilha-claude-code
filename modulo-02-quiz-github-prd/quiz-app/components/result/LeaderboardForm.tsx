@@ -7,6 +7,7 @@ import { ApiError, submitToLeaderboard } from "@/components/quiz/api";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "@/i18n/navigation";
+import { trackEvent } from "@/lib/analytics";
 import type { Level } from "@/lib/levels";
 import {
   NICKNAME_MAX,
@@ -63,6 +64,7 @@ export function LeaderboardForm({
     try {
       const { rank } = await submitToLeaderboard(sessionId, valid.nickname);
       setState({ status: "done", rank });
+      trackEvent({ name: "leaderboard_submitted", props: { level } });
     } catch (error) {
       const code = error instanceof ApiError ? error.code : null;
       if (code === "ALREADY_SUBMITTED") {

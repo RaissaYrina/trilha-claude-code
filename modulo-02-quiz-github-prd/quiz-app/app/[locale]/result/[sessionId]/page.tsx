@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getFormatter, getTranslations } from "next-intl/server";
 import { LeaderboardForm } from "@/components/result/LeaderboardForm";
 import { SaveBestScore } from "@/components/result/SaveBestScore";
+import { ShareButtons } from "@/components/result/ShareButtons";
+import { TrackCompletion } from "@/components/result/TrackCompletion";
 import { Button } from "@/components/ui/button";
 import { resolveLocale } from "@/i18n/locale";
 import { Link, redirect } from "@/i18n/navigation";
@@ -11,6 +13,7 @@ import { uuidSchema } from "@/lib/api";
 import { hasEntry } from "@/lib/db/leaderboard";
 import { findSession, listAnswers } from "@/lib/db/sessions";
 import { toCompletedState } from "@/lib/session";
+import { sharePath, siteUrl } from "@/lib/share";
 import { cn } from "@/lib/utils";
 
 // Lê o banco a cada requisição: o resultado é de uma partida específica.
@@ -46,6 +49,11 @@ export default async function ResultPage({
   const format = await getFormatter({ locale });
   const totalSeconds = Math.round(result.totalTimeMs / 1000);
   const levelName = t(`Play.levels.${result.level}.name`);
+  const shareUrl = `${siteUrl()}${sharePath(locale, result.shareId)}`;
+  const shareText = t("Share.text", {
+    score: format.number(result.score),
+    level: levelName,
+  });
 
   const stats = [
     {
@@ -83,6 +91,12 @@ export default async function ResultPage({
           {t(`Result.bands.${result.band}.description`)}
         </p>
         <SaveBestScore level={result.level} score={result.score} />
+        <TrackCompletion
+          sessionId={row.id}
+          level={result.level}
+          score={result.score}
+          correct={result.correctCount}
+        />
       </header>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -103,6 +117,8 @@ export default async function ResultPage({
         level={result.level}
         submitted={submitted}
       />
+
+      <ShareButtons url={shareUrl} text={shareText} />
 
       <div className="flex flex-col gap-3 sm:flex-row">
         <Button asChild className="h-12 px-6 text-base">

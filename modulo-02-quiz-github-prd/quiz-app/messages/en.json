@@ -156,5 +156,24 @@
     "notInPeriod": "Your game does not appear for this level and period.",
     "empty": "No one has joined this level's leaderboard yet. Want to be the first?",
     "play": "Play this level"
+  },
+  "Share": {
+    "title": "{name}'s result",
+    "anonymous": "Anonymous",
+    "heading": "{name} played the {level} level",
+    "description": "{score} points and {correct} of {total} correct on the {level} level of the Claude Code Quiz for Data.",
+    "text": "I scored {score} points on the {level} level of the Claude Code Quiz for Data! Data engineers, analysts and scientists: can you beat me?",
+    "ogAlt": "{name}'s result: {score} points on the {level} level",
+    "points": "points",
+    "correct": "correct",
+    "cta": "Play too",
+    "sectionTitle": "Share your result",
+    "native": "Share…",
+    "linkedin": "LinkedIn",
+    "x": "X (Twitter)",
+    "whatsapp": "WhatsApp",
+    "copy": "Copy link",
+    "copied": "Link copied!",
+    "copyFailed": "Could not copy. The link is: {url}"
   }
 }

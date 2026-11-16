@@ -12,6 +12,7 @@ import {
   readActiveSession,
   saveActiveSession,
 } from "@/lib/active-session";
+import { trackEvent } from "@/lib/analytics";
 import type { Level } from "@/lib/levels";
 import type { PublicQuestion } from "@/lib/questions/loader";
 import type { AnswerResponse } from "@/lib/session";
@@ -130,6 +131,7 @@ export function QuizRunner({ level }: { level: Level }) {
         }
         const created = await createSession(level, locale);
         saveActiveSession(level, created.sessionId);
+        trackEvent({ name: "quiz_started", props: { level, locale } });
         dispatch({
           type: "loaded",
           game: { ...created, score: 0, streak: 0 },
